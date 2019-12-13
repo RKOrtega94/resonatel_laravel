@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Administar usuarios', 'titlePage' => __('Administar usuarios')])
+@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('Administar usuarios')])
 
 @section('title')
 @endsection
