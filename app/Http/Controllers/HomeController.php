@@ -59,6 +59,6 @@ class HomeController extends Controller
         $newPost->getChild('title')->set('Changed post title');
         $newPost->getValue(); // Fetches the data from the realtime database
         $newPost->remove();
-        return view('welcome');
+        return view('dashboard');
     }
 }

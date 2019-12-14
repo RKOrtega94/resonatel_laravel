@@ -21,5 +21,15 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        DB::table('role')->insert([
+            'name' => 'Super Admin',
+            'description' => 'Administrador general del sistema',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('role_user')->insert([
+            'user_id' => 1,
+            'role_id' => 1
+        ]);
     }
 }

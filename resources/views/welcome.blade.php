@@ -12,9 +12,6 @@ Resona')])
 </div>
 @endguest
 @auth
-<div class="content">
-  <div class="container-fluid">
-  </div>
-</div>
+@include('dashboard')
 @endauth
 @endsection
