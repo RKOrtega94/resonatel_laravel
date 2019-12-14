@@ -15,7 +15,7 @@
       <ul class="navbar-nav">
         <li class="nav-item{{ $activePage == 'login' ? ' active' : '' }}">
           <a href="{{ route('login') }}" class="nav-link">
-            <i class="material-icons">fingerprint</i> {{ __('Login') }}
+            <i class="material-icons">fingerprint</i> {{ __('Iniciar sesión') }}
           </a>
         </li>
       </ul>
