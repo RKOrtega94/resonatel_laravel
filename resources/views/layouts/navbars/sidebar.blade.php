@@ -11,6 +11,14 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
+      @foreach ($menu as $key=>$item)
+      @if ($item['parent'] != 0)
+      @break
+      @endif
+      @if ($item['submenu'])
+          
+      @endif
+      @endforeach
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>

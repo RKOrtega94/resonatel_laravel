@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "kreait/firebase-php": "4.35",
         "kreait/laravel-firebase": "^1.2",
         "laravel-frontend-presets/material-dashboard": "^1.0",
         "laravel/framework": "^6.2",

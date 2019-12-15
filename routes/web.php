@@ -20,7 +20,7 @@ Auth::routes([
 
 Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
 
-
+View::share('test', 'test');
 
 
 Route::group(['middleware' => 'auth'], function () {

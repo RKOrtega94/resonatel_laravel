@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __(' - Home')])
-
 @section('content')
+{{$firebase ?? ''}}
 <div class="content">
   <div class="container-fluid">
     <div class="row">
