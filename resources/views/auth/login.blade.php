@@ -8,7 +8,7 @@
         @csrf
 
         <div class="card card-login card-hidden mb-3">
-          <div class="card-header card-header-primary text-center">
+          <div class="card-header card-header-success text-center">
             <h4 class="card-title"><strong>{{ __('INICIAR SESIÓN') }}</strong></h4>
           </div>
           <div class="card-body">
@@ -48,7 +48,7 @@
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                {{ __('Remember me') }}
+                {{ __('Recordarme') }}
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
+            <button type="submit" class="btn btn-outline-success btn-round btn-lg">{{ __('Ingresar') }}</button>
           </div>
         </div>
       </form>
