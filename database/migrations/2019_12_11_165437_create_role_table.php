@@ -17,6 +17,7 @@ class CreateRoleTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 25)->unique()->nullable(false);
             $table->string('description')->nullable();
+            $table->char('status', 1)->default('A');
             $table->timestamps();
             $table->softDeletes();
         });

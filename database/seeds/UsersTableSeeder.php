@@ -13,23 +13,66 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin Admin',
-            'email' => 'admin@material.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
         DB::table('role')->insert([
             'name' => 'Super Admin',
             'description' => 'Administrador general del sistema',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('role_user')->insert([
-            'user_id' => 1,
-            'role_id' => 1
+        DB::table('role')->insert([
+            'name' => 'Supervisor General',
+            'description' => 'Supervisor general del sistema',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('role')->insert([
+            'name' => 'Supervisor',
+            'description' => 'Supervisor de campaña',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('role')->insert([
+            'name' => 'User',
+            'description' => 'Usuario',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('group')->insert([
+            'name' => 'BAF',
+            'description' => 'Soporte N1, banda ancha fija',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('group')->insert([
+            'name' => 'CHAT',
+            'description' => 'Soporte N1, chat soporte',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('group')->insert([
+            'name' => 'PW',
+            'description' => 'Soporte N1, página web, ticket out',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('group')->insert([
+            'name' => 'Admin',
+            'description' => 'Administradores',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('users')->insert([
+            'firstName' => 'Robinson',
+            'lastName' => 'Ortega',
+            'dni' => '1600870503',
+            'role_id' => '1',
+            'group_id' => '4',
+            'email' => 'ortega.robinson.resona@gmail.com',
+            'email_verified_at' => now(),
+            'user' => 'rkortega',
+            'password' => Hash::make('1600870503'),
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

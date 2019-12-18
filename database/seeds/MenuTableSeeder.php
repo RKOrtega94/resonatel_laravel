@@ -18,7 +18,26 @@ class MenuTableSeeder extends Seeder
             'slug' => 'home',
             'brand' => 'dashboard',
             'icon' => 'dashboard',
+            'idItem' => 'dashboard',
             'parent' => 0,
+            'order' => 0,
+        ]);
+        DB::table('menus')->insert([
+            'name' => 'Laravel Example',
+            'slug' => '#',
+            'brand' => 'laravelExample',
+            'icon' => 'people',
+            'idItem' => 'laravelExample',
+            'parent' => 0,
+            'order' => 1,
+        ]);
+        DB::table('menus')->insert([
+            'name' => 'Profile',
+            'slug' => 'profile.edit',
+            'brand' => 'profile',
+            'icon' => 'person',
+            'idItem' => 'profile',
+            'parent' => 2,
             'order' => 0,
         ]);
     }
