@@ -40,5 +40,14 @@ class MenuTableSeeder extends Seeder
             'parent' => 2,
             'order' => 0,
         ]);
+        DB::table('menus')->insert([
+            'name' => 'User Management',
+            'slug' => 'user.index',
+            'brand' => 'user-management',
+            'icon' => 'people_alt',
+            'idItem' => 'userManagement',
+            'parent' => 2,
+            'order' => 1,
+        ]);
     }
 }

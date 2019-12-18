@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\UserRequest;
+use App\Role;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -26,7 +28,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = DB::table('roles')->get();
+        $group = DB::table('group')->get();
+        return view('users.create', ['roles' => $roles, 'groups' => $group]);
     }
 
     /**
@@ -66,8 +70,10 @@ class UserController extends Controller
         $hasPassword = $request->get('password');
         $user->update(
             $request->merge(['password' => Hash::make($request->get('password'))])
-                ->except([$hasPassword ? '' : 'password']
-        ));
+                ->except(
+                    [$hasPassword ? '' : 'password']
+                )
+        );
 
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }

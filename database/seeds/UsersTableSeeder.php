@@ -13,25 +13,25 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('role')->insert([
+        DB::table('roles')->insert([
             'name' => 'Super Admin',
             'description' => 'Administrador general del sistema',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('role')->insert([
+        DB::table('roles')->insert([
             'name' => 'Supervisor General',
             'description' => 'Supervisor general del sistema',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('role')->insert([
+        DB::table('roles')->insert([
             'name' => 'Supervisor',
             'description' => 'Supervisor de campaña',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('role')->insert([
+        DB::table('roles')->insert([
             'name' => 'User',
             'description' => 'Usuario',
             'created_at' => now(),

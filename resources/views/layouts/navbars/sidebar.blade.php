@@ -38,7 +38,7 @@
                 document.getElementById("{{$item['brand']}}").classList.add('active')
               }
             </script>
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == $submenu['brand'] ? ' active' : '' }}">
               <a class="nav-link" href="{{ route($submenu['slug']) }}">
                 <span class="sidebar-mini"> <i class="material-icons">{{$submenu['icon']}}</i> </span>
                 <span class="sidebar-normal">{{ $submenu['name'] }} </span>
