@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -42,9 +43,10 @@ class UserController extends Controller
      */
     public function store(UserRequest $request, User $model)
     {
-        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
-
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        $model->create($request->merge([
+            'password' => Hash::make($request->get('password'))
+        ])->all());
+        return redirect()->route('user.index')->withStatus(__("User successfully created."));
     }
 
     /**

@@ -37,8 +37,12 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
-            'ignore_exceptions' => false,
+            'channels' => ['syslog', 'slack'],
+        ],
+
+        'syslog' => [
+            'driver' => 'syslog',
+            'level' => 'debug',
         ],
 
         'single' => [

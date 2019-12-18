@@ -26,8 +26,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'role_id' => ['required'],
-            'group_id' => ['required'],
+            'role_id' => ['required', 'min:1'],
+            'group_id' => ['required', 'min:1'],
             'firstName' => ['required', 'min:3'],
             'lastName' => ['required', 'min:3'],
             'dni' => ['required', 'min:3'],
