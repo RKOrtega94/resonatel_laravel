@@ -7,7 +7,6 @@ use App\Http\Requests\UserRequest;
 use App\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -19,7 +18,9 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        $roles = DB::table('roles')->get();
+        $group = DB::table('group')->get();
+        return view('users.index', ['users' => $model->paginate(), 'roles' => $roles, 'groups' => $group]);
     }
 
     /**
@@ -57,7 +58,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = DB::table('roles')->get();
+        $group = DB::table('group')->get();
+        return view('users.edit', compact('user'), ['roles' => $roles, 'groups' => $group]);
     }
 
     /**
