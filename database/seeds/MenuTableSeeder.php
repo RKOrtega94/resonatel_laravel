@@ -23,21 +23,12 @@ class MenuTableSeeder extends Seeder
             'order' => 0,
         ]);
         DB::table('menus')->insert([
-            'name' => 'Laravel Example',
+            'name' => 'Mintenance',
             'slug' => '#',
-            'brand' => 'laravelExample',
-            'icon' => 'people',
-            'idItem' => 'laravelExample',
+            'brand' => 'maintenance',
+            'icon' => 'perm_data_setting',
+            'idItem' => 'maintenance',
             'parent' => 0,
-            'order' => 1,
-        ]);
-        DB::table('menus')->insert([
-            'name' => 'Profile',
-            'slug' => 'profile.edit',
-            'brand' => 'profile',
-            'icon' => 'person',
-            'idItem' => 'profile',
-            'parent' => 2,
             'order' => 0,
         ]);
         DB::table('menus')->insert([
@@ -46,6 +37,15 @@ class MenuTableSeeder extends Seeder
             'brand' => 'user-management',
             'icon' => 'people_alt',
             'idItem' => 'userManagement',
+            'parent' => 2,
+            'order' => 0,
+        ]);
+        DB::table('menus')->insert([
+            'name' => 'Navigation Management',
+            'slug' => 'maintenance.navigation.index',
+            'brand' => 'navigation-management',
+            'icon' => 'navigation',
+            'idItem' => 'navigationManagement',
             'parent' => 2,
             'order' => 1,
         ]);
