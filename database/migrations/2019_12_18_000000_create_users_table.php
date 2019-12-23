@@ -15,10 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('role_id')->nullable(false);
-            $table->foreign('role_id')->references('id')->on('roles');
-            $table->unsignedInteger('group_id')->nullable(false);
-            $table->foreign('group_id')->references('id')->on('group');
+            $table->enum('group', ['BAF', 'CHAT', 'PW', 'CE', 'NA'])->default('NA');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('dni')->unique();

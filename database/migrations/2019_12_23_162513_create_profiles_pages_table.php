@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenuByRolTable extends Migration
+class CreateProfilesPagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateMenuByRolTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_by_rols', function (Blueprint $table) {
+        Schema::create('profiles_pages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles');
-            $table->unsignedInteger('menu_id');
-            $table->foreign('menu_id')->references('id')->on('menus');
-            $table->boolean('status')->default(1);
+            $table->unsignedInteger('profile_id')->nullable(false);
+            $table->foreign('profile_id')->references('id')->on('profiles');
+            $table->unsignedInteger('page_id')->nullable(false);
+            $table->foreign('page_id')->references('id')->on('pages');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +31,6 @@ class CreateMenuByRolTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_by_rols');
+        Schema::dropIfExists('profiles_pages');
     }
 }
