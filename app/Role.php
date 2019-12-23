@@ -8,7 +8,7 @@ class Role extends Model
 {
     public function getRole()
     {
-        return $this->where('status', 'A')
+        return $this->where('status', 1)
             ->get()
             ->toArray();
     }

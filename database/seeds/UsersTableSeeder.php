@@ -38,6 +38,12 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('group')->insert([
+            'name' => 'Admin',
+            'description' => 'Administradores',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('group')->insert([
             'name' => 'BAF',
             'description' => 'Soporte N1, banda ancha fija',
             'created_at' => now(),
@@ -55,18 +61,12 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('group')->insert([
-            'name' => 'Admin',
-            'description' => 'Administradores',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
         DB::table('users')->insert([
-            'firstName' => 'Robinson',
-            'lastName' => 'Ortega',
+            'firstName' => 'Robinson Klever',
+            'lastName' => 'Ortega Mafla',
             'dni' => '1600870503',
             'role_id' => '1',
-            'group_id' => '4',
+            'group_id' => '1',
             'email' => 'ortega.robinson.resona@gmail.com',
             'email_verified_at' => now(),
             'user' => 'rkortega',

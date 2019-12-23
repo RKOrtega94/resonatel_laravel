@@ -16,10 +16,11 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 150);
-            $table->string('slug', 150)->unique();
+            $table->string('slug', 150);
             $table->string('brand', 50);
             $table->string('icon', 50);
             $table->string('idItem', 50);
+            $table->boolean('show')->default(1);
             $table->unsignedInteger('parent')->default(0);
             $table->unsignedInteger('order')->default(0);
             $table->boolean('enabled')->default(1);
@@ -34,6 +35,7 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('menu_by_rols');
         Schema::dropIfExists('menus');
     }
 }

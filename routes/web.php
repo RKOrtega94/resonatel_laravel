@@ -53,10 +53,13 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('upgrade');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::get('403', ['as' => 'helpers.403', 'uses' => 'ForbiddenController@index']);
+
+Route::middleware(['auth', 'permission'])->group(function () {
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-    Route::get('navigation', ['as' => 'maintenance.navigation.index', 'uses' => 'NavigationController@index']);
+    Route::get('navigation', ['as' => 'navigation.index', 'uses' => 'NavigationController@index']);
+    Route::resource('roles', 'RolController', ['except' => ['show']]);
 });

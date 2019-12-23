@@ -19,6 +19,7 @@ class MenuTableSeeder extends Seeder
             'brand' => 'dashboard',
             'icon' => 'dashboard',
             'idItem' => 'dashboard',
+            'show' => 1,
             'parent' => 0,
             'order' => 0,
         ]);
@@ -28,6 +29,7 @@ class MenuTableSeeder extends Seeder
             'brand' => 'maintenance',
             'icon' => 'perm_data_setting',
             'idItem' => 'maintenance',
+            'show' => 1,
             'parent' => 0,
             'order' => 0,
         ]);
@@ -37,17 +39,77 @@ class MenuTableSeeder extends Seeder
             'brand' => 'user-management',
             'icon' => 'people_alt',
             'idItem' => 'userManagement',
+            'show' => 1,
             'parent' => 2,
             'order' => 0,
         ]);
         DB::table('menus')->insert([
+            'name' => 'Roles Management',
+            'slug' => 'roles.index',
+            'brand' => 'roles-management',
+            'icon' => 'verified_user',
+            'idItem' => 'rolManagement',
+            'show' => 1,
+            'parent' => 2,
+            'order' => 1,
+        ]);
+        DB::table('menus')->insert([
             'name' => 'Navigation Management',
-            'slug' => 'maintenance.navigation.index',
+            'slug' => 'navigation.index',
             'brand' => 'navigation-management',
             'icon' => 'navigation',
             'idItem' => 'navigationManagement',
+            'show' => 1,
             'parent' => 2,
-            'order' => 1,
+            'order' => 2,
+        ]);
+        DB::table('menus')->insert([
+            'name' => 'profile',
+            'slug' => 'profile',
+            'brand' => 'profile',
+            'icon' => 'person',
+            'idItem' => 'profileManagement',
+            'show' => 0,
+            'parent' => 0,
+            'order' => 0,
+        ]);
+        DB::table('menus')->insert([
+            'name' => 'Create User',
+            'slug' => 'user.create',
+            'brand' => 'person',
+            'icon' => 'person',
+            'idItem' => 'createUser',
+            'show' => 0,
+            'parent' => 0,
+            'order' => 0,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 1,
+            'role_id' => 1,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 2,
+            'role_id' => 1,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 3,
+            'role_id' => 1,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 4,
+            'role_id' => 1,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 5,
+            'role_id' => 1,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 6,
+            'role_id' => 1,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 7,
+            'role_id' => 1,
         ]);
     }
 }

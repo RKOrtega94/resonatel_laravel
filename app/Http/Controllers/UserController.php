@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Requests\UserRequest;
 use App\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
 {
+
+    /**
+     * Función para validar permisos
+     */
+    protected function validatePath()
+    {
+    }
     /**
      * Display a listing of the users
      *
