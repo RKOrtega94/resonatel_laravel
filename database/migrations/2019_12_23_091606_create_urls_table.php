@@ -15,8 +15,11 @@ class CreateUrlsTable extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Name', 25)->unique();
+            $table->string('Name', 25)->unique()->nullable(false);
+            $table->string('URL', 50)->unique()->nullable(false);
+            $table->boolean('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
