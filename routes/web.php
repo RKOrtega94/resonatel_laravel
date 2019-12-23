@@ -56,7 +56,11 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('403', ['as' => 'helpers.403', 'uses' => 'ForbiddenController@index']);
 
 Route::middleware(['auth', 'permission'])->group(function () {
-    Route::resource('user', 'UserController', ['except' => ['show']]);
+    Route::get('user', ['as' => 'user.index', 'uses' => 'UserController@index']);
+    Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
+    Route::delete('user/destroy/{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
+    Route::get('user/edit', ['as' => 'user.edit', 'uses' => 'UserCOntroller@edit']);
+    Route::post('user', ['as' => 'user.store', 'uses' => 'UserController@store']);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);

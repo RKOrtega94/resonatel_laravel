@@ -65,7 +65,7 @@ class MenuTableSeeder extends Seeder
         ]);
         DB::table('menus')->insert([
             'name' => 'profile',
-            'slug' => 'profile',
+            'slug' => 'profile.edit',
             'brand' => 'profile',
             'icon' => 'person',
             'idItem' => 'profileManagement',
@@ -75,13 +75,23 @@ class MenuTableSeeder extends Seeder
         ]);
         DB::table('menus')->insert([
             'name' => 'Create User',
-            'slug' => 'user.create',
-            'brand' => 'person',
+            'slug' => 'user/create',
+            'brand' => 'create-management',
             'icon' => 'person',
             'idItem' => 'createUser',
             'show' => 0,
             'parent' => 0,
-            'order' => 0,
+            'order' => 200,
+        ]);
+        DB::table('menus')->insert([
+            'name' => 'Delete User',
+            'slug' => 'user/destroy/',
+            'brand' => 'delete-management',
+            'icon' => 'person',
+            'idItem' => 'deleteUser',
+            'show' => 0,
+            'parent' => 0,
+            'order' => 201,
         ]);
         DB::table('menu_by_rols')->insert([
             'menu_id' => 1,
@@ -109,6 +119,10 @@ class MenuTableSeeder extends Seeder
         ]);
         DB::table('menu_by_rols')->insert([
             'menu_id' => 7,
+            'role_id' => 1,
+        ]);
+        DB::table('menu_by_rols')->insert([
+            'menu_id' => 8,
             'role_id' => 1,
         ]);
     }

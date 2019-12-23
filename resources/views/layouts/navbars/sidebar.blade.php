@@ -15,10 +15,7 @@
             @if ($item['parent'] != 0)
             @break
             @endif
-            @if ($item['show']==false)
-            @break
-            @endif
-            @if ($item['role'] != Auth::user()->role_id)
+            @if ($item['show']==false || $item['role'] != Auth::user()->role_id)
             @break
             @endif
             @if ($item['submenu'] == [])
@@ -39,11 +36,6 @@
                 <div class="collapse show" id="{{$item['brand']}}">
                     <ul class="nav">
                         @foreach ($item['submenu'] as $submenu)
-                        <script>
-                            if( {{ $activePage == $submenu['brand']?'1':'0' }} ) {
-                document.getElementById("{{$item['brand']}}").classList.add('active')
-              }
-                        </script>
                         <li class="nav-item{{ $activePage == $submenu['brand'] ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route($submenu['slug']) }}">
                                 <span class="sidebar-mini"> <i class="material-icons">{{$submenu['icon']}}</i> </span>
