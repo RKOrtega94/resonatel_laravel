@@ -11,6 +11,12 @@
 |
 */
 
+//$app->configure('mail');
+//$app->configure('services');
+//$app->register(Sichikawa\LaravelSendgridDriver\MailServiceProvider::class);
+//
+//unset($app->availableBindings['mailer']);
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
+use App\Mail\TestEmail;
+use App\Mail\WellcomeMail;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -58,6 +62,7 @@ class HomeController extends Controller
         //
         //$newPost->getChild('title')->set('Changed post title');
         //$newPost->getValue(); // Fetches the data from the realtime database
+        //Mail::to(Auth::user()->email)->send(new WellcomeMail);
         return view('dashboard');
     }
 }
