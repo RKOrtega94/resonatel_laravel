@@ -44,10 +44,10 @@
                                         {{ __('Usuario') }}
                                     </th>
                                     <th>
-                                        {{ __('Rol') }}
+                                        {{ __('Grupo') }}
                                     </th>
                                     <th>
-                                        {{ __('Grupo') }}
+                                        {{ __('Rol') }}
                                     </th>
                                     <th>
                                         {{ __('Email') }}
@@ -63,7 +63,7 @@
                                     @foreach($users as $user)
                                     <tr>
                                         <td>
-                                            {{ $user->firstName." ".$user->lastName }}
+                                            {{ $user->firstName ." ". $user->lastName}}
                                         </td>
                                         <td>
                                             {{ $user->dni }}
@@ -72,18 +72,10 @@
                                             {{ $user->user }}
                                         </td>
                                         <td>
-                                            @foreach ($roles as $rol)
-                                            @if ($rol->id == $user->role_id)
-                                            {{ $rol->name }}
-                                            @endif
-                                            @endforeach
+                                            {{ $user->group }}
                                         </td>
                                         <td>
-                                            @foreach ($groups as $group)
-                                            @if ($group->id == $user->group_id)
-                                            {{ $group->name }}
-                                            @endif
-                                            @endforeach
+                                            {{ $user->profile }}
                                         </td>
                                         <td>
                                             {{ $user->email }}

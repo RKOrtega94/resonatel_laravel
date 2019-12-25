@@ -27,9 +27,7 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        $roles = DB::table('roles')->get();
-        $group = DB::table('group')->get();
-        return view('users.index', ['users' => $model->paginate(), 'roles' => $roles, 'groups' => $group]);
+        return view('users.index', ['users' => User::users()]);
     }
 
     /**
@@ -39,9 +37,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = DB::table('roles')->get();
-        $group = DB::table('group')->get();
-        return view('users.create', ['roles' => $roles, 'groups' => $group]);
+        $roles = DB::table('profiles')
+            ->where('enabled', 1)
+            ->get();
+        return view('users.create', ['roles' => $roles]);
     }
 
     /**
@@ -102,6 +101,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'.$user));
+        return redirect()->route('user.index')->withStatus(__('User successfully deleted.' . $user));
     }
 }

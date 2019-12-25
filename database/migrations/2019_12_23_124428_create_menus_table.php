@@ -17,8 +17,11 @@ class CreateMenusTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 25)->unique()->nullable(false);
             $table->string('brand', 50)->unique()->nullable(false);
-            $table->string('slug', 50)->nullable(false);
+            $table->string('slug', 50)->unique()->nullable(false);
             $table->string('icon', 50)->nullable(false);
+            $table->unsignedInteger('parent')->default(0);
+            $table->smallInteger('order')->default(0);
+            $table->boolean('enabled')->default(1);
             $table->timestamps();
         });
     }

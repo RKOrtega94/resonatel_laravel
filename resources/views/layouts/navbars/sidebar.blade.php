@@ -15,7 +15,7 @@
             @if ($item['parent'] != 0)
             @break
             @endif
-            @if ($item['show']==false || $item['role'] != Auth::user()->role_id)
+            @if ($item['user_id'] != Auth::user()->id )
             @break
             @endif
             @if ($item['submenu'] == [])

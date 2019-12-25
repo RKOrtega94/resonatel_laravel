@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use App\ProfilesMenu;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\MenuByRol;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //View::share('menu', MenuByRol::menus());
+        View::share('menu', ProfilesMenu::menus());
     }
 }

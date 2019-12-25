@@ -53,17 +53,16 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('upgrade');
 });
 
-Route::get('403', ['as' => 'helpers.403', 'uses' => 'ForbiddenController@index']);
+Route::get('403', ['as' => '403', 'uses' => 'ForbiddenController@index']);
 
-Route::middleware(['auth', 'permission'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('user', ['as' => 'user.index', 'uses' => 'UserController@index']);
     Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
     Route::delete('user/destroy/{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
-    Route::get('user/edit', ['as' => 'user.edit', 'uses' => 'UserCOntroller@edit']);
+    Route::get('user/edit', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
     Route::post('user', ['as' => 'user.store', 'uses' => 'UserController@store']);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
     Route::get('navigation', ['as' => 'navigation.index', 'uses' => 'NavigationController@index']);
-    Route::resource('roles', 'RolController', ['except' => ['show']]);
 });

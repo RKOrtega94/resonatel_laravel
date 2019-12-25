@@ -13,16 +13,42 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'firstName' => 'Robinson Klever',
-            'lastName' => 'Ortega Mafla',
-            'dni' => '1600870503',
-            'email' => 'ortega.robinson.resona@gmail.com',
-            'email_verified_at' => now(),
-            'user' => 'rkortega',
-            'password' => Hash::make('1600870503'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+
+        ///**
+        // * Inserting User
+        // */
+        //DB::table('users')
+        //    ->insert([
+        //        'firstName' => 'Robinson Klever',
+        //        'lastName' => 'Ortega Mafla',
+        //        'dni' => '1600870503',
+        //        'email' => 'ortega.robinson.resona@gmail.com',
+        //        'email_verified_at' => now(),
+        //        'user' => 'rkortega',
+        //        'password' => Hash::make('1600870503'),
+        //        'created_at' => now(),
+        //        'updated_at' => now()
+        //    ]);
+        ///**
+        // * Insertin Profile
+        // */
+        //DB::table('profiles')
+        //    ->insert([
+        //        'name' => 'Super Admin',
+        //        'description' => 'Administrador del sistema',
+        //        'created_at' => now(),
+        //        'updated_at' => now()
+        //    ]);
+        ///**
+        // * Inserting User by profile
+        // */
+        //DB::table('users_profiles')
+        //    ->insert([
+        //        'user_id' => 1,
+        //        'profile_id' => 1,
+        //        'enabled' => 1,
+        //        'created_at' => now(),
+        //        'updated_at' => now()
+        //    ]);
     }
 }
