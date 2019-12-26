@@ -59,8 +59,9 @@ Route::get('403', ['as' => '403', 'uses' => 'ForbiddenController@index']);
 Route::middleware(['auth'])->group(function () {
     Route::get('user', ['as' => 'user.index', 'uses' => 'UserController@index']);
     Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
-    Route::delete('user/destroy/{id}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
-    Route::get('user/edit', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
+    Route::delete('user/destroy/{user}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
+    Route::get('user/{user}/edit', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
+    Route::patch('user/{user}', 'UserController@update')->name('user.update');
     Route::post('user', ['as' => 'user.store', 'uses' => 'UserController@store']);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);

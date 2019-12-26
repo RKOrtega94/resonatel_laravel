@@ -75,7 +75,7 @@
                                             {{ $user->group }}
                                         </td>
                                         <td>
-                                            {{ $user->profile }}
+
                                         </td>
                                         <td>
                                             {{ $user->email }}
@@ -85,12 +85,12 @@
                                         </td>
                                         <td class="td-actions text-right">
                                             @if ($user->id != auth()->id())
-                                            <form action="{{ route('user.destroy', $user) }}" method="post">
+                                            <form action="{{ route('user.destroy', $user->user) }}" method="post">
                                                 @csrf
                                                 @method('delete')
 
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('user.edit', $user) }}" data-original-title=""
+                                                    href="{{ route('user.edit', $user->user) }}" data-original-title=""
                                                     title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>

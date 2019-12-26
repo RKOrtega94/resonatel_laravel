@@ -15,9 +15,7 @@
             @if ($item['parent'] != 0)
             @break
             @endif
-            @if ($item['user_id'] != Auth::user()->id )
-            @break
-            @endif
+            @if ($item['user_id'] == Auth::user()->id )
             @if ($item['submenu'] == [])
             <li class="nav-item{{ $activePage == $item['brand'] ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route($item['slug']) }}">
@@ -36,16 +34,19 @@
                 <div class="collapse show" id="{{$item['brand']}}">
                     <ul class="nav">
                         @foreach ($item['submenu'] as $submenu)
+                        @if ($submenu['user_id'] == Auth::user()->id)
                         <li class="nav-item{{ $activePage == $submenu['brand'] ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route($submenu['slug']) }}">
                                 <span class="sidebar-mini"> <i class="material-icons">{{$submenu['icon']}}</i> </span>
                                 <span class="sidebar-normal">{{ $submenu['name'] }} </span>
                             </a>
                         </li>
+                        @endif
                         @endforeach
                     </ul>
                 </div>
             </li>
+            @endif
             @endif
             @endforeach
         </ul>

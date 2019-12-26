@@ -15,6 +15,13 @@ class MenuProfileSeeder extends Seeder
         DB::table('profiles_menus')
             ->insert([
                 'profile_id' => 1,
+                'menu_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        DB::table('profiles_menus')
+            ->insert([
+                'profile_id' => 1,
                 'menu_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now()

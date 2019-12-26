@@ -13,6 +13,16 @@ class MenuTableSeeder extends Seeder
     public function run()
     {
         DB::table('menus')->insert([
+            'name' => 'Dashboard',
+            'brand' => 'dashboard',
+            'slug' => 'home',
+            'icon' => 'dashboard',
+            'parent' => 0,
+            'order' => 0,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('menus')->insert([
             'name' => 'Maintenance',
             'brand' => 'maintenance',
             'slug' => '#',
@@ -24,7 +34,7 @@ class MenuTableSeeder extends Seeder
         ]);
         DB::table('menus')->insert([
             'name' => 'User Management',
-            'brand' => 'user-magement',
+            'brand' => 'user-management',
             'slug' => 'user.index',
             'icon' => 'people',
             'parent' => 2,

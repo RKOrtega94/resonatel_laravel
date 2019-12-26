@@ -7,7 +7,6 @@
             <div class="col-md-12">
                 <form method="post" action="{{ route('user.store') }}" autocomplete="off" class="form-horizontal">
                     @csrf
-                    @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">{{ __('Agregar usuario') }}</h4>
@@ -23,7 +22,7 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Perfil') }}</label>
                                 <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('profile') ? ' has-danger' : '' }}">
+                                    <div class="form-profile{{ $errors->has('profile') ? ' has-danger' : '' }}">
                                         <select name="profile" id="input-profile"
                                             class="form-control{{ $errors->has('profile') ? ' is-invalid' : '' }}"
                                             required="true" aria-required="true">
@@ -32,9 +31,9 @@
                                             <option value="{{ $rol->id }}">{{ $rol->name }}</option>
                                             @endforeach
                                         </select>
-                                        @if ($errors->has('group'))
-                                        <span id="group-error" class="error text-danger"
-                                            for="input-group">{{ $errors->first('group') }}</span>
+                                        @if ($errors->has('profile'))
+                                        <span id="profile-error" class="error text-danger"
+                                            for="input-profile">{{ $errors->first('profile') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -44,9 +43,8 @@
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('group') ? ' has-danger' : '' }}">
                                         <select name="group" id="input-group"
-                                            class="form-control{{ $errors->has('group') ? ' is-invalid' : '' }}"
-                                            required="true" aria-required="true">
-                                            <option value="">{{ __('Seleccione una opción') }}</option>
+                                            class="form-control{{ $errors->has('group') ? ' is-invalid' : '' }}">
+                                            <option value="NA">{{ __('N/A') }}</option>
                                             <option value="BAF">BAF</option>
                                             <option value="CHAT">CHAT</option>
                                             <option value="PW">PÁGINA WEB</option>
@@ -133,8 +131,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label"
-                                    for="input-password">{{ __('Password') }}</label>
+                                <label class="col-sm-2 col-form-label" for="input-password">{{ __('Password') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"

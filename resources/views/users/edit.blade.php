@@ -8,7 +8,7 @@
                 <form method="post" action="{{ route('user.update', $user) }}" autocomplete="off"
                     class="form-horizontal">
                     @csrf
-                    @method('put')
+                    @method('PATCH')
 
                     <div class="card ">
                         <div class="card-header card-header-primary">
@@ -44,19 +44,28 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Grupo') }}</label>
                                 <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('group_id') ? ' has-danger' : '' }}">
-                                        <select class="form-control {{ $errors->has('group_id') ? ' is-invalid' : '' }}"
-                                            name="group_id" id="input-group_id" required="true" aria-required="true">
-                                            @foreach ($groups as $group)
-                                            <option value="{{$group->id}}"
-                                                {{ $group->id == $user->group_id?'selected':'' }}>
-                                                {{ $group->name }}
+                                    <div class="form-group{{ $errors->has('group') ? ' has-danger' : '' }}">
+                                        <select class="form-control {{ $errors->has('group') ? ' is-invalid' : '' }}"
+                                            name="group" id="input-group" required="true" aria-required="true">
+                                            <option value="NA" {{ "NA" == $user->group?'selected':'' }}>
+                                                NA
                                             </option>
-                                            @endforeach
+                                            <option value="BAF" {{ "NA" == $user->group?'selected':'' }}>
+                                                Banda Ancha Fija
+                                            </option>
+                                            <option value="CHAT" {{ "NA" == $user->group?'selected':'' }}>
+                                                Soporte Chat
+                                            </option>
+                                            <option value="PW" {{ "NA" == $user->group?'selected':'' }}>
+                                                Página Web
+                                            </option>
+                                            <option value="CE" {{ "NA" == $user->group?'selected':'' }}>
+                                                Campañas Específicas
+                                            </option>
                                         </select>
-                                        @if ($errors->has('group_id'))
-                                        <span id="group_id-error" class="error text-danger"
-                                            for="input-group_id">{{ $errors->first('group_id') }}</span>
+                                        @if ($errors->has('group'))
+                                        <span id="group-error" class="error text-danger"
+                                            for="input-group">{{ $errors->first('group') }}</span>
                                         @endif
                                     </div>
                                 </div>

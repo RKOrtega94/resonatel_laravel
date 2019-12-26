@@ -50,12 +50,19 @@ class UserController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserRequest $request, User $model)
+    public function store(UserRequest $request)
     {
-        $model->create($request->merge([
-            'password' => Hash::make($request->get('password'))
+        $model = new User();
+        $user = $model->create($request->merge([
+            'password' => Hash::make($request->password)
         ])->all());
-        return redirect()->route('user.index')->withStatus(__("User successfully created.ID: " . $model->id));
+        DB::table('users_profiles')->insert([
+            'user_id' => $user->id,
+            'profile_id' => $request->profile,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return redirect()->route('user.index')->withStatus(__("User successfully created."));;
     }
 
     /**
@@ -66,9 +73,14 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = DB::table('roles')->get();
-        $group = DB::table('group')->get();
-        return view('users.edit', compact('user'), ['roles' => $roles, 'groups' => $group]);
+        $roles = DB::table('profiles')
+            ->where('enabled', 1)
+            ->get();
+        return view(
+            'users.edit',
+            compact('user'),
+            ['roles' => $roles]
+        );
     }
 
     /**
@@ -78,15 +90,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User  $user)
+    public function update(User $user, UserRequest $request)
     {
-        $hasPassword = $request->get('password');
-        $user->update(
-            $request->merge(['password' => Hash::make($request->get('password'))])
-                ->except(
-                    [$hasPassword ? '' : 'password']
-                )
-        );
+        $user->update($request->validated());
 
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
@@ -97,10 +103,13 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User  $user)
+    public function destroy(User $user)
     {
+        $user->update([
+            'enabled' => 0
+        ]);
         $user->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.' . $user));
+        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
     }
 }
