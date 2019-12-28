@@ -19,7 +19,6 @@ class CreateUsersProfilesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('profile_id')->nullable(false);
             $table->foreign('profile_id')->references('id')->on('profiles');
-            $table->boolean('enabled')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

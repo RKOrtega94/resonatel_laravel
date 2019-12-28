@@ -46,7 +46,6 @@ class UsersTableSeeder extends Seeder
             ->insert([
                 'user_id' => 1,
                 'profile_id' => 1,
-                'enabled' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

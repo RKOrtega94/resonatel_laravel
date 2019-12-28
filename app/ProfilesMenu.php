@@ -20,11 +20,11 @@ class ProfilesMenu extends Model
     public function getMenuAll()
     {
         return $this
+            ->where('menus.deleted_at', null)
             ->join('menus', 'menus.id', 'profiles_menus.menu_id')
             ->join('profiles', 'profiles.id', 'profiles_menus.profile_id')
             ->join('users_profiles', 'profiles.id', 'users_profiles.profile_id')
             ->join('users', 'users_profiles.user_id', 'users.id')
-            ->where('menus.enabled', 1)
             ->orderby('parent')
             ->orderby('order')
             ->orderby('name')
@@ -43,5 +43,9 @@ class ProfilesMenu extends Model
             $menuAll = array_merge($menuAll, $item);
         }
         return $menus->menuAll = $menuAll;
+    }
+
+    public static function getProfilesMenus($menu)
+    {
     }
 }

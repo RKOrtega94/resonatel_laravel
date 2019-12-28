@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __(' - Administar usuarios')])
+@extends('layouts.app', ['activePage' => $activePage, 'titlePage' => __(' - User Management')])
 
 @section('content')
 <div class="content">
@@ -165,7 +165,4 @@
         </div>
     </div>
 </div>
-<script>
-
-</script>
 @endsection

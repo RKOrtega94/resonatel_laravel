@@ -1,5 +1,4 @@
-@extends('layouts.app', ['activePage' => "$activePage", 'titlePage' => __(' - User Management')])
-
+@extends('layouts.app', ['activePage' => 'menu-management', 'titlePage' => __(' - User Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -7,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Usuarios') }}</h4>
-                        <p class="card-category"> {{ __('Gestión de usuarios') }}</p>
+                        <h4 class="card-title ">{{ __('Menus') }}</h4>
+                        <p class="card-category"> {{ __('Gestión de navegación') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('status'))
@@ -23,75 +22,73 @@
                             </div>
                         </div>
                         @endif
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">
-                                    <span class="sidebar-mini"> <i class="material-icons">person_add</i>
-                                        {{ __('Agregar usuario') }}</span>
-                                </a>
-                            </div>
-                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
+                                        {{ __('Icon') }}
+                                    </th>
+                                    <th>
                                         {{ __('Nombre') }}
                                     </th>
                                     <th>
-                                        {{ __('Cédula / Pasaporte') }}
+                                        {{ __('Brand') }}
                                     </th>
                                     <th>
-                                        {{ __('Usuario') }}
+                                        {{ __('Slug') }}
                                     </th>
                                     <th>
-                                        {{ __('Grupo') }}
+                                        {{ __('Parent') }}
                                     </th>
                                     <th>
-                                        {{ __('Rol') }}
+                                        {{ __('Estado') }}
                                     </th>
                                     <th>
-                                        {{ __('Email') }}
-                                    </th>
-                                    <th>
-                                        {{ $date }}
+                                        {{ __('Creation date') }}
                                     </th>
                                     <th class="text-right">
                                         {{ __('Actions') }}
                                     </th>
                                 </thead>
                                 <tbody>
-                                    @foreach($users as $user)
+                                    @foreach($navigations as $nav)
                                     <tr>
                                         <td>
-                                            {{ $user->firstName ." ". $user->lastName}}
+                                            <i class="material-icons">{{ $nav->icon }}</i>
                                         </td>
                                         <td>
-                                            {{ $user->dni }}
+                                            {{ $nav->name }}
                                         </td>
                                         <td>
-                                            {{ $user->user }}
+                                            {{ $nav->brand}}
                                         </td>
                                         <td>
-                                            {{ $user->group }}
+                                            {{ $nav->slug}}
                                         </td>
                                         <td>
-                                            {{ $user->profile }}
+                                            @foreach($navigations as $parent)
+                                            {{ $nav->parent == $parent->id?$parent->name:'' }}
+                                            @endforeach
                                         </td>
                                         <td>
-                                            {{ $user->email }}
+                                            {{ $nav->enabled?__('enabled'):__('disabled') }}
                                         </td>
                                         <td>
-                                            {{ $user->deleted_at?$user->deleted_at:$user->created_at }}
+                                            {{ $nav->created_at }}
                                         </td>
                                         <td class="td-actions text-right">
-                                            @if ($user->deleted_at == null)
-                                            @if ($user->id != auth()->id())
-                                            <form action="{{ route('user.destroy', $user->user) }}" method="post">
+                                            <form action="{{ route('menu.destroy', $nav->brand) }}" method="post">
                                                 @csrf
                                                 @method('delete')
 
+                                                <a rel="tooltip" class="btn btn-primary btn-link"
+                                                    href="{{ route('menu.show', $nav->brand) }}" data-original-title=""
+                                                    title="">
+                                                    <i class="material-icons">visibility</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('user.edit', $user->user) }}" data-original-title=""
+                                                    href="{{ route('menu.edit', $nav->brand) }}" data-original-title=""
                                                     title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
@@ -103,26 +100,6 @@
                                                     <div class="ripple-container"></div>
                                                 </button>
                                             </form>
-                                            @else
-                                            <a rel="tooltip" class="btn btn-success btn-link"
-                                                href="{{ route('profile.edit') }}" data-original-title="" title="">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                            @endif
-                                            @else
-                                            <form action="{{ route('archivedusers.destroy', $user->user) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" class="btn btn-success btn-link"
-                                                    data-original-title="" title=""
-                                                    onclick="confirm('{{ __("Are you sure you want to restore this user?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">autorenew</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                            </form>
-                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

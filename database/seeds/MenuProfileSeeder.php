@@ -33,5 +33,47 @@ class MenuProfileSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+        DB::table('profiles_menus')
+            ->insert([
+                'profile_id' => 1,
+                'menu_id' => 4,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        DB::table('profiles_menus')
+            ->insert([
+                'profile_id' => 1,
+                'menu_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        DB::table('profiles_menus')
+            ->insert([
+                'profile_id' => 1,
+                'menu_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        DB::table('profiles_menus')
+            ->insert([
+                'profile_id' => 1,
+                'menu_id' => 7,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        DB::table('profiles_menus')
+            ->insert([
+                'profile_id' => 1,
+                'menu_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        DB::table('profiles_menus')
+            ->insert([
+                'profile_id' => 1,
+                'menu_id' => 9,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
     }
 }

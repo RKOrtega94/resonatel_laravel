@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\UserRequest;
+use App\Profile;
 use App\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 class UserController extends Controller
 {
 
-    /**
-     * Función para validar permisos
-     */
-    protected function validatePath()
+    function __construct()
     {
+        $this->middleware('profile');
     }
     /**
      * Display a listing of the users
@@ -25,9 +24,10 @@ class UserController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index()
     {
-        return view('users.index', ['users' => User::users()]);
+        $ruta = Route::getCurrentRoute()->getName();
+        return view('users.index', ['activePage' => 'user-management', 'users' => User::users(), 'date' => 'Creation date']);
     }
 
     /**
@@ -38,9 +38,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = DB::table('profiles')
-            ->where('enabled', 1)
             ->get();
-        return view('users.create', ['roles' => $roles]);
+        return view('users.create', ['activePage' => 'user-management', 'roles' => Profile::all()]);
     }
 
     /**
@@ -74,13 +73,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = DB::table('profiles')
-            ->where('enabled', 1)
             ->get();
-        return view(
-            'users.edit',
-            compact('user'),
-            ['roles' => $roles]
-        );
+        return view('users.edit', compact('user'), ['activePage' => 'user-management', 'roles' => $roles]);
     }
 
     /**
@@ -92,7 +86,9 @@ class UserController extends Controller
      */
     public function update(User $user, UserRequest $request)
     {
-        $user->update($request->validated());
+        $user->update($request->merge([
+            'password' => Hash::make($request->password)
+        ])->all());
 
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
@@ -105,9 +101,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->update([
-            'enabled' => 0
-        ]);
         $user->delete();
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));

@@ -11,18 +11,17 @@
 |
 */
 
-
+// Redirect to home page
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
+
 Auth::routes([
     'register' => false
 ]);
 
+//Home Page
 Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
-
-View::share('test', 'test');
-
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('table-list', function () {
@@ -54,17 +53,27 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('upgrade');
 });
 
-Route::get('403', ['as' => '403', 'uses' => 'ForbiddenController@index']);
-
 Route::middleware(['auth'])->group(function () {
-    Route::get('user', ['as' => 'user.index', 'uses' => 'UserController@index']);
-    Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
-    Route::delete('user/destroy/{user}', ['as' => 'user.destroy', 'uses' => 'UserController@destroy']);
-    Route::get('user/{user}/edit', ['as' => 'user.edit', 'uses' => 'UserController@edit']);
-    Route::patch('user/{user}', 'UserController@update')->name('user.update');
-    Route::post('user', ['as' => 'user.store', 'uses' => 'UserController@store']);
+
+    // Route For users
+    Route::resource('user', 'UserController');
+
+    // Route for menus
+    Route::resource('menu', 'MenuController');
+
+    // Route for Profiles
+    Route::resource('profiles', 'RolController');
+
+    // Route for Archived Users
+    Route::resource('archivedusers', 'ArchivedUserController');
+
+    // Route for Archived Profiles
+    Route::resource('archivedprofiles', 'ArchivedProfileController');
+
+    // Route for Archived Menus
+    Route::resource('archivedmenus', 'ArchivedMenuController');
+
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-    Route::get('navigation', ['as' => 'navigation.index', 'uses' => 'NavigationController@index']);
 });

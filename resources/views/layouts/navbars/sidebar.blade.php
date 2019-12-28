@@ -6,6 +6,7 @@
   -->
     <div class="logo">
         <a href="/" class="simple-text logo-normal">
+            <img src="{{ asset('images/icon.ico') }}" alt="RESONATEL" class="icon-bar navbar-brand border-0" width="40">
             {{ __('RESONATEL') }}
         </a>
     </div>
@@ -19,7 +20,7 @@
             @if ($item['submenu'] == [])
             <li class="nav-item{{ $activePage == $item['brand'] ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route($item['slug']) }}">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">{{ $item['icon'] }}</i>
                     <p>{{ $item['name'] }}</p>
                 </a>
             </li>

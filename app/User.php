@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'group', 'firstName', 'lastName', 'dni', 'email', 'user', 'enabled', 'password'
+        'group', 'firstName', 'lastName', 'dni', 'email', 'user', 'password'
     ];
 
     //protected
@@ -49,10 +49,30 @@ class User extends Authenticatable
     public static function users()
     {
         return DB::table('users')
-            ->where('users.enabled', 1)
+            ->where('users.deleted_at', null)
             ->join('users_profiles', 'users.id', 'users_profiles.user_id')
             ->join('profiles', 'profiles.id', 'users_profiles.profile_id')
             ->select('profiles.name as profile', 'users.*')
+            ->get();
+    }
+
+    /**
+     * List of all archived users
+     */
+    public static function archivedUsers()
+    {
+        return DB::table('users')
+            ->where('users.deleted_at', '!=', null)
+            ->join('users_profiles', 'users.id', 'users_profiles.user_id')
+            ->join('profiles', 'profiles.id', 'users_profiles.profile_id')
+            ->select('profiles.name as profile', 'users.*')
+            ->get();
+    }
+
+    public static function getDisabledUser($user)
+    {
+        return DB::table('users')
+            ->where('user', $user)
             ->get();
     }
 
