@@ -14,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 class UserController extends Controller
 {
 
-    function __construct()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $this->middleware('profile');
+        $this->middleware(['auth', 'profile']);
     }
+
     /**
      * Display a listing of the users
      *

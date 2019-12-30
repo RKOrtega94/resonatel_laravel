@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Page;
 use Closure;
+use Illuminate\Support\Facades\Route;
 
 class CheckProfile
 {
@@ -15,7 +17,8 @@ class CheckProfile
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->id === 1) {
+        $page = Route::getCurrentRoute()->getName();
+        if (Page::findPage($page)) {
             return $next($request);
         }
         abort(403);

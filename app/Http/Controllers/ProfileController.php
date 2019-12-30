@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'profile']);
+    }
+    
     /**
      * Show the form for editing the profile.
      *

@@ -17,7 +17,6 @@ class CreatePagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 50)->nullable(false)->unique();
             $table->string('URL', 150)->nullable();
-            $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

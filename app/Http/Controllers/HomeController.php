@@ -7,7 +7,9 @@ use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use App\Mail\TestEmail;
 use App\Mail\WellcomeMail;
+use App\Page;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
 {
@@ -18,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'profile']);
     }
 
     /**

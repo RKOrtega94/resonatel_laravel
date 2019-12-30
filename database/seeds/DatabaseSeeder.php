@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             MenuTableSeeder::class,
-            MenuProfileSeeder::class
+            MenuProfileSeeder::class,
+            PageTableSeeder::class
         ]);
     }
 }
