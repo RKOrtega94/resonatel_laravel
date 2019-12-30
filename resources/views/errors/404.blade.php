@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => '', 'titlePage' => __(' - Page not found')])
+@extends('layouts.app', ['activePage' => '', 'titlePage' => __(' - 404')])
 
 @section('content')
 <div class="content">
@@ -17,7 +17,6 @@
 
             </div>
         </div>
-        <!-- /.col-lg-8 col-offset-2 -->
     </div>
 </div>
 @endsection

@@ -15,8 +15,8 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 50)->nullable(false)->unique();
-            $table->string('URL', 150)->nullable();
+            $table->string('name', 50)->nullable(false);
+            $table->string('URL', 150)->nullable()->unique();
             $table->timestamps();
             $table->softDeletes();
         });

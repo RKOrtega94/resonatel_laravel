@@ -3,6 +3,8 @@
     <div class="container">
         <div class="navbar-wrapper">
             <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="{{ asset('images/icon.ico') }}" alt="RESONATEL" class="icon-bar navbar-brand margin-0"
+                    height="40" style="margin: 0em">
                 {{ __('Bitácora Resona') }}
             </a>
         </div>
