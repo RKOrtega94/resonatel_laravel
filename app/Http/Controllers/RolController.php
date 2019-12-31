@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
 use App\Profile;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -19,7 +20,7 @@ class RolController extends Controller
     {
         $this->middleware(['auth', 'profile']);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +28,9 @@ class RolController extends Controller
      */
     public function index()
     {
-        return view('profiles.index', ['profiles' => Profile::getProfiles()]);
+        $profile = Profile::all();
+
+        return view('profiles.index', compact('profile'));
     }
 
     /**
@@ -78,7 +81,10 @@ class RolController extends Controller
     {
         try {
             $profile = Profile::findOrFail(decrypt($id));
-            return view('profiles.edit', compact('profile'));
+
+            $pages = Page::pluck('name', 'id');
+
+            return view('profiles.edit', compact('profile', 'pages'));
         } catch (Exception $e) {
             abort(404);
         }
@@ -94,7 +100,7 @@ class RolController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $profile = Profile::findOrFail(decrypt($id))->update($request->all());
+            Profile::findOrFail(decrypt($id))->update($request->all());
             return redirect()->route('profiles.index')->withStatus(__("Profile successfully updated."));
         } catch (Exception $e) {
             abort(500);

@@ -21,6 +21,7 @@ class CheckProfile
         if (Page::findPage($page)) {
             return $next($request);
         }
-        abort(403);
+        //abort(403);
+        return $next($request);
     }
 }

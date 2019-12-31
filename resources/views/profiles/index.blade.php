@@ -47,7 +47,7 @@
                                     </th>
                                 </thead>
                                 <tbody>
-                                    @foreach($profiles as $profile)
+                                    @foreach($profile as $profile)
                                     <tr>
                                         <td>
                                             {{ $profile->name }}

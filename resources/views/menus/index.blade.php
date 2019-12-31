@@ -41,9 +41,6 @@
                                         {{ __('Parent') }}
                                     </th>
                                     <th>
-                                        {{ __('Estado') }}
-                                    </th>
-                                    <th>
                                         {{ __('Creation date') }}
                                     </th>
                                     <th class="text-right">
@@ -69,9 +66,6 @@
                                             @foreach($navigations as $parent)
                                             {{ $nav->parent == $parent->id?$parent->name:'' }}
                                             @endforeach
-                                        </td>
-                                        <td>
-                                            {{ $nav->enabled?__('enabled'):__('disabled') }}
                                         </td>
                                         <td>
                                             {{ $nav->created_at }}
