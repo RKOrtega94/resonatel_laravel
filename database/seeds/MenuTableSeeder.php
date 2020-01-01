@@ -19,6 +19,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'home',
             'parent' => 0,
             'order' => 0,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -29,6 +30,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'settings_applications',
             'parent' => 0,
             'order' => 1,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -39,6 +41,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'person',
             'parent' => 2,
             'order' => 0,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -49,6 +52,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'people',
             'parent' => 2,
             'order' => 1,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -59,6 +63,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'near_me',
             'parent' => 2,
             'order' => 2,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -69,6 +74,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'archive',
             'parent' => 0,
             'order' => 2,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -79,6 +85,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'person',
             'parent' => 6,
             'order' => 0,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -89,6 +96,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'people',
             'parent' => 6,
             'order' => 1,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -99,6 +107,7 @@ class MenuTableSeeder extends Seeder
             'icon' => 'near_me',
             'parent' => 6,
             'order' => 2,
+            'menu_item' => 1,
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\DB;
 class Menu extends Model
 {
     use SoftDeletes;
+
+    //protected
+    /**
+     * The attributes that should be show for arrays.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'slug', 'brand', 'icon', 'menu_item'
+    ];
+
     public static function getMenuAll()
     {
         return DB::table('menus')

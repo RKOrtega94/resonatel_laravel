@@ -47,7 +47,17 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $model = new Menu();
+        if ($request->menu_item == 'on') {
+            $menu = $model->create($request->merge([
+                'menu_item' => 1
+            ])->all());
+        } else {
+            $menu = $model->create($request->merge([
+                'menu_item' => 0
+            ])->all());
+        }
+        return redirect()->route('menu.index')->withStatus(__("Route successfully created."));;
     }
 
     /**
@@ -82,7 +92,7 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        //
+        return $request;
     }
 
     /**

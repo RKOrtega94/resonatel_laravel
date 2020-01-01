@@ -34,21 +34,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Brand') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('brand') ? ' has-danger' : '' }}">
-                                        <input type="text"
-                                            class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}"
-                                            name="brand" id="input-brand" type="text" placeholder="{{ __('Brand') }}"
-                                            value="{{ old('brand') }}" required="true" aria-required="true" />
-                                        @if ($errors->has('brand'))
-                                        <span id="brand-error" class="error text-danger"
-                                            for="input-brand">{{ $errors->first('brand') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Slug') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('slug') ? ' has-danger' : '' }}">
@@ -64,12 +49,27 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Brand') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group{{ $errors->has('brand') ? ' has-danger' : '' }}">
+                                        <input type="text"
+                                            class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}"
+                                            name="brand" id="input-brand" type="text" placeholder="{{ __('Brand') }}"
+                                            value="{{ old('brand') }}" required="true" aria-required="true" />
+                                        @if ($errors->has('brand'))
+                                        <span id="brand-error" class="error text-danger"
+                                            for="input-brand">{{ $errors->first('brand') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Icon') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('icon') ? ' has-danger' : '' }}">
                                         <input type="text"
                                             class="form-control{{ $errors->has('icon') ? ' is-invalid' : '' }}"
-                                            name="brand" id="input-icon" type="text" placeholder="{{ __('Icon') }}"
+                                            name="icon" id="input-icon" type="text" placeholder="{{ __('Icon') }}"
                                             value="{{ old('icon') }}" required="true" aria-required="true" />
                                         @if ($errors->has('icon'))
                                         <span id="icon-error" class="error text-danger"
@@ -95,6 +95,21 @@
                                         <span id="parent-error" class="error text-danger"
                                             for="input-parent">{{ $errors->first('parent') }}</span>
                                         @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-7">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" name="menu_item"
+                                                {{ old('menu_item') ? 'checked' : '' }}>
+                                            {{ __('Is Menu?') }}
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>

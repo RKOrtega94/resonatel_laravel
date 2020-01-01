@@ -21,6 +21,7 @@ class ProfilesMenu extends Model
     {
         return $this
             ->where('menus.deleted_at', null)
+            ->where('menus.menu_item', 1)
             ->join('menus', 'menus.id', 'profiles_menus.menu_id')
             ->join('profiles', 'profiles.id', 'profiles_menus.profile_id')
             ->join('users_profiles', 'profiles.id', 'users_profiles.profile_id')
