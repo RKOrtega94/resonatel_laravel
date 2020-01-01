@@ -17,11 +17,11 @@ class CheckProfile
      */
     public function handle($request, Closure $next)
     {
-        $page = Route::getCurrentRoute()->getName();
-        if (Page::findPage($page)) {
-            return $next($request);
-        }
-        //abort(403);
+        //$page = Route::getCurrentRoute()->getName();
+        //if (Page::findPage($page)) {
+        //    return $next($request);
+        //}
+        ////abort(403);
         return $next($request);
     }
 }

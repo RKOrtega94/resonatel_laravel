@@ -81,10 +81,7 @@ class RolController extends Controller
     {
         try {
             $profile = Profile::findOrFail(decrypt($id));
-
-            $pages = Page::pluck('name', 'id');
-
-            return view('profiles.edit', compact('profile', 'pages'));
+            return view('profiles.edit', compact('profile'));
         } catch (Exception $e) {
             abort(404);
         }

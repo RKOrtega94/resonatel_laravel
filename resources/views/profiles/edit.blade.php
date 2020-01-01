@@ -51,20 +51,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="container">
-                                    <div class="row">
-                                        @foreach ($pages as $id => $name)
-                                        <div class="col-md-2">
-                                            <input type="checkbox" name="roles[]" value="{{ $id }}"
-                                                {{ $profile->pages->pluck('id')->contains($id)?'checked':'' }}
-                                                style="margin-left: 20px">
-                                            {{ $name }}
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
                             <button type="submit" class="btn btn-primary">{{ __('Save Profile') }}</button>

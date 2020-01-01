@@ -33,7 +33,7 @@ class UserController extends Controller
     public function index()
     {
         $ruta = Route::getCurrentRoute()->getName();
-        return view('users.index', ['activePage' => 'user-management', 'users' => User::users(), 'date' => 'Creation date']);
+        return view('users.index', ['activePage' => 'user-management', 'users' => User::users(), 'date' => 'Creation date', 'navCategory' => 'maintenance']);
     }
 
     /**
@@ -80,7 +80,7 @@ class UserController extends Controller
     {
         $roles = DB::table('profiles')
             ->get();
-        return view('users.edit', compact('user'), ['activePage' => 'user-management', 'roles' => $roles]);
+        return view('users.edit', compact('user'), ['activePage' => 'user-management', 'navCategory' => 'maintenance', 'roles' => $roles]);
     }
 
     /**
