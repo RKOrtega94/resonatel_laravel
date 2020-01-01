@@ -18,8 +18,4 @@ class Menu extends Model
             ->orderby('name')
             ->get();
     }
-    public function getRouteKeyName()
-    {
-        return 'brand';
-    }
 }

@@ -20,7 +20,8 @@ class CreateMenusTable extends Migration
             $table->string('slug', 50)->nullable(false);
             $table->string('icon', 50)->nullable(false);
             $table->unsignedInteger('parent')->default(0);
-            $table->smallInteger('order')->default(0);
+            $table->smallInteger('order')->default(200);
+            $table->boolean('menu_item')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -1,6 +1,6 @@
-<footer class="footer">
-    <div class="container-fluid">
-        <div class="copyright float-right">
+<footer class="footer" style="padding-bottom: 0%">
+    <div class="container-fluid" style="padding-bottom: 0%">
+        <div class="copyright float-right" style="padding-bottom: 0%">
             &copy;
             <script>
                 document.write(new Date().getFullYear())

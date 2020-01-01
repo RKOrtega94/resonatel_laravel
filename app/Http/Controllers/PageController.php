@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Menu;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class PageController extends Controller
 {
 
     /**
@@ -25,7 +24,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('menus.index', ['navigations' => Menu::paginate(15)]);
+        //
     }
 
     /**
@@ -35,8 +34,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $navs = Menu::all();
-        return view('menus.create', compact('navs'));
+        //
     }
 
     /**
@@ -47,7 +45,7 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        //
     }
 
     /**
@@ -56,9 +54,9 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Menu $menu)
+    public function show($id)
     {
-        return $menu;
+        //
     }
 
     /**
@@ -67,10 +65,9 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit($id)
     {
-        $menu = Menu::findOrFail($menu->id);
-        return view('menus.edit', ['menuItem' => $menu]);
+        //
     }
 
     /**
@@ -80,7 +77,7 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -91,7 +88,7 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function destroy($id)
     {
         //
     }

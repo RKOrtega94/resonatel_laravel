@@ -22,6 +22,14 @@
                             </div>
                         </div>
                         @endif
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <a href="{{ route('menu.create') }}" class="btn btn-sm btn-primary">
+                                    <span class="sidebar-mini"> <i class="material-icons">add_box</i>
+                                        {{ __('add') }}</span>
+                                </a>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
@@ -71,18 +79,18 @@
                                             {{ $nav->created_at }}
                                         </td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('menu.destroy', $nav->brand) }}" method="post">
+                                            <form action="{{ route('menu.destroy', $nav) }}" method="post">
                                                 @csrf
                                                 @method('delete')
 
                                                 <a rel="tooltip" class="btn btn-primary btn-link"
-                                                    href="{{ route('menu.show', $nav->brand) }}" data-original-title=""
+                                                    href="{{ route('menu.show', $nav) }}" data-original-title=""
                                                     title="">
                                                     <i class="material-icons">visibility</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('menu.edit', $nav->brand) }}" data-original-title=""
+                                                    href="{{ route('menu.edit', $nav) }}" data-original-title=""
                                                     title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
@@ -99,6 +107,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $navigations->links() }}
                         </div>
                     </div>
                 </div>
