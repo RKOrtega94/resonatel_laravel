@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,9 @@ class WellcomeMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +29,6 @@ class WellcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.test');
+        return $this->view('emails.test', ['user' => $this->user]);
     }
 }

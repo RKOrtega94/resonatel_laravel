@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\UserRequest;
+use App\Mail\WellcomeMail;
 use App\Profile;
 use App\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
@@ -67,6 +69,8 @@ class UserController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
+        Mail::to($user->email)->send(new WellcomeMail($user));
         return redirect()->route('user.index')->withStatus(__("User successfully created."));;
     }
 

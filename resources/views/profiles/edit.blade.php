@@ -51,6 +51,41 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <th>{{ __('Icon') }}</th>
+                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Brand') }}</th>
+                                            <th>{{ __('Route') }}</th>
+                                            <th>{{ __('Status') }}</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($pages as $page)
+                                            <tr>
+                                                <td><i class="material-icons">{{ $page->icon }}</i></td>
+                                                <td>{{ $page->name}}</td>
+                                                <td>{{ $page->brand }}</td>
+                                                <td>{{ $page->slug }}</td>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                name="pages[]" value="{{ $page->id }}"
+                                                                {{ $profile->menus->pluck('id')->contains($page->id)?'checked':'' }}>
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
                             <button type="submit" class="btn btn-primary">{{ __('Save Profile') }}</button>

@@ -15,65 +15,27 @@ class MenuProfileSeeder extends Seeder
         DB::table('profiles_menus')
             ->insert([
                 'profile_id' => 1,
-                'menu_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
+                'menu_id' => 1
             ]);
         DB::table('profiles_menus')
             ->insert([
                 'profile_id' => 1,
-                'menu_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
+                'menu_id' => 2
             ]);
         DB::table('profiles_menus')
             ->insert([
                 'profile_id' => 1,
-                'menu_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
+                'menu_id' => 3
             ]);
         DB::table('profiles_menus')
             ->insert([
                 'profile_id' => 1,
-                'menu_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
+                'menu_id' => 4
             ]);
         DB::table('profiles_menus')
             ->insert([
                 'profile_id' => 1,
-                'menu_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        DB::table('profiles_menus')
-            ->insert([
-                'profile_id' => 1,
-                'menu_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        DB::table('profiles_menus')
-            ->insert([
-                'profile_id' => 1,
-                'menu_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        DB::table('profiles_menus')
-            ->insert([
-                'profile_id' => 1,
-                'menu_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        DB::table('profiles_menus')
-            ->insert([
-                'profile_id' => 1,
-                'menu_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now()
+                'menu_id' => 5
             ]);
     }
 }

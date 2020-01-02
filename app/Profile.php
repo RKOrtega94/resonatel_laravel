@@ -10,9 +10,9 @@ class Profile extends Model
 {
     use SoftDeletes;
 
-    public function pages()
+    public function menus()
     {
-        return $this->belongsToMany('App\Page', 'profiles_pages');
+        return $this->belongsToMany('App\Menu', 'profiles_menus');
     }
 
     protected $fillable = ['name', 'description', 'enabled'];

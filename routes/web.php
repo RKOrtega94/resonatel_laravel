@@ -11,6 +11,10 @@
 |
 */
 
+//DB::listen(function ($query) {
+//    echo "<pre>{$query->sql}</pre>";
+//});
+
 // Redirect to home page
 Route::get('/', function () {
     return redirect('home');

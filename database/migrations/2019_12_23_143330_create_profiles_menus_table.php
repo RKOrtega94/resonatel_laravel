@@ -19,8 +19,6 @@ class CreateProfilesMenusTable extends Migration
             $table->foreign('profile_id')->references('id')->on('profiles');
             $table->unsignedInteger('menu_id')->nullable(false);
             $table->foreign('menu_id')->references('id')->on('menus');
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

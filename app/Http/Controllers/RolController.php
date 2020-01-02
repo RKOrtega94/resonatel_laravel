@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Menu;
 use App\Page;
 use App\Profile;
 use Exception;
@@ -65,7 +66,8 @@ class RolController extends Controller
     {
         try {
             $profile = Profile::findOrFail(decrypt($id));
-            return view('profiles.show', compact('profile'));
+            $pages = Menu::all();
+            return view('profiles.show', compact(['profile', 'pages']));
         } catch (Exception $e) {
             abort(404);
         }
@@ -81,7 +83,8 @@ class RolController extends Controller
     {
         try {
             $profile = Profile::findOrFail(decrypt($id));
-            return view('profiles.edit', compact('profile'));
+            $pages = Menu::all();
+            return view('profiles.edit', compact(['profile', 'pages']));
         } catch (Exception $e) {
             abort(404);
         }
@@ -97,7 +100,9 @@ class RolController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            Profile::findOrFail(decrypt($id))->update($request->all());
+            $profile = Profile::findOrFail(decrypt($id));
+            $profile->update($request->all());
+            $profile->menus()->sync($request->pages);
             return redirect()->route('profiles.index')->withStatus(__("Profile successfully updated."));
         } catch (Exception $e) {
             abort(500);
@@ -113,11 +118,7 @@ class RolController extends Controller
     public function destroy($id)
     {
         try {
-
             $profile = Profile::findOrFail(decrypt($id));
-            $profile->update([
-                'enabled' => 0
-            ]);
             $profile->delete();
             return redirect()->route('profiles.index')->withStatus(__("Profile successfully deleted."));
         } catch (Exception $e) {

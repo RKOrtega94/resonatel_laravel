@@ -19,7 +19,7 @@
             @if ($item['user_id'] == Auth::user()->id )
             @if ($item['submenu'] == [])
             <li class="nav-item{{ $activePage == $item['brand'] ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route($item['slug']) }}">
+                <a class="nav-link" href="{{ $item['slug']!='#'?route($item['slug']):'#' }}">
                     <i class="material-icons">{{ $item['icon'] }}</i>
                     <p>{{ $item['name'] }}</p>
                 </a>
