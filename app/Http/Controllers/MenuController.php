@@ -35,7 +35,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $navs = Menu::all();
+        $navs = Menu::getNavs();
         return view('menus.create', compact('navs'));
     }
 
@@ -80,7 +80,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         $menu = Menu::findOrFail($menu->id);
-        return view('menus.edit', ['menuItem' => $menu]);
+        return view('menus.edit', ['menuItem' => $menu, 'navs' => Menu::getNavs()]);
     }
 
     /**
@@ -90,9 +90,18 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Menu $menu, Request $request)
     {
-        return $request;
+        if ($request->menu_item == 'on') {
+            $menu->update($request->merge([
+                'menu_item' => 1
+            ])->all());
+        } else {
+            $menu->update($request->merge([
+                'menu_item' => 0
+            ])->all());
+        }
+        return redirect()->route('menu.index')->withStatus(__('Page successfully updated.'));
     }
 
     /**

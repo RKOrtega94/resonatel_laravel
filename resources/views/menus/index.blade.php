@@ -90,7 +90,7 @@
                                                     <div class="ripple-container"></div>
                                                 </a>
                                                 <a rel="tooltip" class="btn btn-success btn-link"
-                                                    href="{{ route('menu.edit', $nav) }}" data-original-title=""
+                                                    href="{{ route('menu.edit', $nav->id) }}" data-original-title=""
                                                     title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>

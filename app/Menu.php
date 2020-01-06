@@ -29,4 +29,15 @@ class Menu extends Model
             ->orderby('name')
             ->get();
     }
+
+    public static function getNavs()
+    {
+        return DB::table('menus')
+            ->where('deleted_at', null)
+            ->where('menu_item', 1)
+            ->orderby('parent')
+            ->orderby('order')
+            ->orderby('name')
+            ->get();
+    }
 }

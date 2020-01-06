@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'menu-management', 'titlePage' => __(' - Create Profile')])
+@extends('layouts.app', ['activePage' => 'menu-management', 'titlePage' => __(' - Create Page')])
 
 @section('content')
 <div class="content">
@@ -9,7 +9,7 @@
                     @csrf
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Agregar perfil') }}</h4>
+                            <h4 class="card-title">{{ __('Agregar página') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-primary">{{ __('Add Profile') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Add Page') }}</button>
                         </div>
                     </div>
                 </form>

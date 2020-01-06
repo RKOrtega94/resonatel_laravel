@@ -77,6 +77,9 @@ Route::middleware(['auth'])->group(function () {
     // Route for Archived Menus
     Route::resource('archivedmenus', 'ArchivedMenuController');
 
+    // Bitácora controller
+    Route::resource('bitacora', 'BitacoraController');
+
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
