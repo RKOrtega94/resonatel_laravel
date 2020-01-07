@@ -74,7 +74,7 @@ class BitacoraFirebase extends Model
         return $ticketReference;
     }
 
-    public function getFirebaseData($data)
+    public static function getFirebaseData($data)
     {
         Request::session()->put('firebase', 'test1');
     }
