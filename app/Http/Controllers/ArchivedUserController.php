@@ -13,11 +13,11 @@ class ArchivedUserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware(['auth', 'profile']);
-    }
-    
+    //public function __construct()
+    //{
+    //    $this->middleware(['auth', 'profile']);
+    //}
+
     /**
      * Display a listing of the resource.
      *

@@ -6,7 +6,7 @@ use App\BitacoraFirebase;
 use DateTime;
 use Error;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cache;
 
 class BitacoraController extends Controller
 {
@@ -23,7 +23,8 @@ class BitacoraController extends Controller
 
     public function index(Request $request)
     {
-        return $request->session()->all();
+        $value = Cache::get('key');
+        return $value;
         return view('bitacoras.data');
     }
 
