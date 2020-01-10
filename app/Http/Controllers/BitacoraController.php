@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\BitacoraFirebase;
+use App\User;
 use DateTime;
 use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class BitacoraController extends Controller
 {
@@ -23,8 +25,8 @@ class BitacoraController extends Controller
 
     public function index(Request $request)
     {
-        $value = Cache::get('key');
-        return $value;
+        //$menu = DB::table('menus')->get();
+        //return response()->json($menu);
         return view('bitacoras.data');
     }
 

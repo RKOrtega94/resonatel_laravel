@@ -33,7 +33,8 @@
     @include('layouts.page_templates.guest')
     @endguest
     <!--   Core JS Files   -->
-    <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!--<script src="{{ asset('material') }}/js/core/jquery.min.js"></script>-->
     <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
     <script src="{{ asset('material') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -77,6 +78,7 @@
     <script src="{{ asset('material') }}/demo/demo.js"></script>
     <script src="{{ asset('material') }}/js/settings.js"></script>
     @stack('js')
+    @yield('custom-scripts')
 </body>
 
 </html>

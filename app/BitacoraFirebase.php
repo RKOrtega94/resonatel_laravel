@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BitacoraFirebase extends Model
 {
-    public function firebaseConnection()
+    public static function firebaseConnection()
     {
         $serviceAccount = ServiceAccount::fromArray([
             "type" => "service_account",
@@ -35,7 +36,7 @@ class BitacoraFirebase extends Model
         return $factory->createDatabase();
     }
 
-    public static function queryFirebase()
+    public static function queryBitacora()
     {
         // Define connection
         $database = BitacoraFirebase::firebaseConnection();
@@ -63,7 +64,7 @@ class BitacoraFirebase extends Model
                     $user = $database->getReference("tickets/baf/$year/$month/$day");
                     $userReference = array_merge($userReference, $user->getChildKeys());
                     foreach ($user->getChildKeys() as $user) {
-                        if ($user == auth()->user()->user) {
+                        if ($user == Auth::user()->user) {
                             $ticket = $database->getReference("tickets/baf/$year/$month/$day/$user");
                             $ticketReference = array_merge($ticketReference, $ticket->getChildKeys());
                         }
@@ -72,10 +73,5 @@ class BitacoraFirebase extends Model
             }
         }
         return $ticketReference;
-    }
-
-    public static function getFirebaseData($data)
-    {
-        Request::session()->put('firebase', 'test1');
     }
 }
