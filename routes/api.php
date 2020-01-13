@@ -1,11 +1,9 @@
 <?php
 
-use App\BitacoraFirebase;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Stmt\Return_;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\DataTables;
 
 //use DataTables;
 
@@ -24,43 +22,31 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('data/mensual/{user}', function (Request $request, User $user) {
+Route::get('data/{user}', function (Request $request, User $user) {
+    $data = [];
 
-    $year = date('Y');
-    $month = date('m');
+    $inp = file_get_contents('../public/data/baf.json');
+    $array = json_decode($inp, true);
 
-    $ruta = Route::getCurrentRoute()->getName();
-
-    //return $user->user;
-    // Define connection
-    $database = BitacoraFirebase::firebaseConnection();
-
-    // References
-    $ticketReference = [];
-    $ticketData = [];
-
-    // Getting reference
-    $data = $database->getReference("tickets/baf/$year/$month");
-
-    // Get day reference
-    foreach ($data->getChildKeys() as $day) {
-        $users = $database->getReference("tickets/baf/$year/$month/$day");
-        foreach ($users->getChildKeys() as $userref) {
-            if ($userref == $user->user) {
-                $tickets = $database->getReference("tickets/baf/$year/$month/$day/$userref");
-                $ticketData = array_merge($ticketData, $tickets->getValue());
-                //foreach ($tickets->getChildKeys() as $ticket) {
-                //    $registros = $database->getReference("tickets/baf/$year/$month/$day/$userref/$ticket");
-                //    $ticketData = array_merge($ticketData, $registros->getValue());
-                //}
-            }
+    foreach ($array as $value) {
+        if ($value['user'] == $user->user) {
+            $data = array_merge($data, [$value]);
         }
     }
 
-    //return $data->getValue();
-    return DataTables::collection($ticketData)->toJson();
-    //if ($request->ajax()) {
-    //    $data = Menu::latest()->get();
-    //    return DataTables::of($data)->toJson();
-    //}
+    return DataTables::of($data)->toJson();
+});
+
+Route::get('group/{group}', function (Request $request, $group) {
+
+    $data = [];
+
+    $inp = file_get_contents('../public/data/baf.json');
+    $array = json_decode($inp, true);
+
+    foreach ($array as $value) {
+        $data = array_merge($data, [$value]);
+    }
+
+    return DataTables::of($data)->toJson();
 });

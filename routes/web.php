@@ -80,6 +80,9 @@ Route::middleware(['auth'])->group(function () {
     // Bitácora controller
     Route::resource('bitacora', 'BitacoraController');
 
+    // Data controller
+    Route::resource('data/bitacoras', 'DataController');
+
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
