@@ -1,5 +1,6 @@
 <?php
 
+use App\BitacoraFirebase;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('data/{user}', function (Request $request, User $user) {
+Route::get('data/baf/{user}', function (Request $request, User $user) {
     $data = [];
 
     $inp = file_get_contents('../public/data/baf.json');
@@ -32,6 +33,30 @@ Route::get('data/{user}', function (Request $request, User $user) {
         if ($value['user'] == $user->user) {
             $data = array_merge($data, [$value]);
         }
+    }
+
+    return DataTables::of($data)->toJson();
+});
+
+Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
+    $data = [];
+
+    $year = now()->format('Y');
+    $month = now()->format('m');
+    $day = now()->format('d');
+
+    $database = BitacoraFirebase::firebaseConnection();
+
+    $username = $user->user;
+
+    $tickets = $database->getReference("tickets/baf/$year/$month/$day/$username");
+
+    foreach ($tickets->getChildKeys() as $ticket) {
+        $values = $database->getReference("tickets/baf/$year/$month/$day/$username/$ticket");
+        //$values->update([
+        //    'user' => $username
+        //]);
+        array_push($data, $values->getValue());
     }
 
     return DataTables::of($data)->toJson();

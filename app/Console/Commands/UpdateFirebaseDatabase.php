@@ -38,8 +38,6 @@ class UpdateFirebaseDatabase extends Command
      */
     public function handle()
     {
-        $data = array();
-
         $database = BitacoraFirebase::firebaseConnection();
 
         $data = [];
@@ -48,11 +46,11 @@ class UpdateFirebaseDatabase extends Command
 
         $tempArray = json_decode($inp, true);
 
-        $users =  $database->getReference("tickets/baf/2019/11/08");
+        $users =  $database->getReference("tickets/baf/2019/11/20");
         foreach ($users->getChildKeys() as $user) {
-            $ticket = $database->getReference("tickets/baf/2019/11/08/$user");
+            $ticket = $database->getReference("tickets/baf/2019/11/20/$user");
             foreach ($ticket->getChildKeys() as $ticket) {
-                $values = $database->getReference("tickets/baf/2019/11/08/$user/$ticket");
+                $values = $database->getReference("tickets/baf/2019/11/20/$user/$ticket");
                 $values->update([
                     'user' => $user
                 ]);

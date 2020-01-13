@@ -7,10 +7,10 @@
             <div class="col-lg-12 col-md-12">
                 <form action="{{route('bitacora.store')}}" method="post" autocomplete="off" class="form-horizontal">
                     @csrf
-                    <div class="card">
+                    <div class="card" style="margin-top: 0px;">
                         <div class="card-header card-header-primary">
                             <h3 style="margin: 0px">{{ __('Registro de incidencias') }}</h3>
-                            <p class="card-category">{{ __('Bitácora diaria') }}</p>
+                            <p class="card-category">{{ __('Registro de bitácora') }}</p>
                         </div>
                         <div class="card-body">
                             @if (session('status'))
@@ -53,6 +53,16 @@
                 </form>
             </div>
         </div>
+        @switch(auth()->user()->group)
+        @case('BAF')
+        @include('bitacoras.baf.daily')
+        @break
+        @case(2)
+
+        @break
+        @default
+
+        @endswitch
     </div>
 </div>
 @endsection

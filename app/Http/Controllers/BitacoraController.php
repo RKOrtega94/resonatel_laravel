@@ -56,7 +56,10 @@ class BitacoraController extends Controller
 
         $ticket = $database
             ->getReference("tickets/" . strtolower(auth()->user()->group) . "/$year/$month/$day/" . auth()->user()->user . "/" . $request->ticket)
-            ->set($request->all());
+            ->set($request->merge([
+                'date' => now()->format('d/m/Y'),
+                'hour' => now()->format('H:i')
+            ])->all());
 
         $key = $ticket->getKey();
 
