@@ -26,7 +26,10 @@
                             </div>
                             @endif
                             <div class="row">
-                                <div class="col-md-12 text-right">
+                                <div class="col-md-6 text-left">
+                                    <div id="tmo"></div>
+                                </div>
+                                <div class="col-md-6 text-right">
                                     <a href="{{ route('bitacora.index') }}" class="btn btn-sm btn-primary">
                                         <span class="sidebar-mini">
                                             <i class="material-icons">storage</i>

@@ -46,11 +46,11 @@ class UpdateFirebaseDatabase extends Command
 
         $tempArray = json_decode($inp, true);
 
-        $users =  $database->getReference("tickets/baf/2019/11/20");
+        $users =  $database->getReference("tickets/baf/2019/11/25");
         foreach ($users->getChildKeys() as $user) {
-            $ticket = $database->getReference("tickets/baf/2019/11/20/$user");
+            $ticket = $database->getReference("tickets/baf/2019/11/25/$user");
             foreach ($ticket->getChildKeys() as $ticket) {
-                $values = $database->getReference("tickets/baf/2019/11/20/$user/$ticket");
+                $values = $database->getReference("tickets/baf/2019/11/25/$user/$ticket");
                 $values->update([
                     'user' => $user
                 ]);
