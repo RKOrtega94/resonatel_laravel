@@ -40,17 +40,20 @@ class UpdateFirebaseDatabase extends Command
     {
         $database = BitacoraFirebase::firebaseConnection();
 
+        $year = now()->format('Y');
+        $month = now()->format('m');
+        $day = now()->format('d');
+
         $data = [];
 
         $inp = file_get_contents('./public/data/baf.json');
 
         $tempArray = json_decode($inp, true);
-
-        $users =  $database->getReference("tickets/baf/2019/11/25");
+        $users =  $database->getReference("tickets/baf/$year/$month/$day");
         foreach ($users->getChildKeys() as $user) {
-            $ticket = $database->getReference("tickets/baf/2019/11/25/$user");
+            $ticket = $database->getReference("tickets/baf/$year/$month/$day/$user");
             foreach ($ticket->getChildKeys() as $ticket) {
-                $values = $database->getReference("tickets/baf/2019/11/25/$user/$ticket");
+                $values = $database->getReference("tickets/baf/$year/$month/$day/$user/$ticket");
                 $values->update([
                     'user' => $user
                 ]);

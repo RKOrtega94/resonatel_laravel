@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-primary">
+                    <div class="card-header card-header-success">
                         <h3 style="margin: 0px">{{ __('Indicators') }}</h3>
                     </div>
                     <div class="card-body">

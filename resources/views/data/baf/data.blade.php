@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card" style="margin-top: 0px; margin-bottom: -35px">
-                    <div class="card-header card-header-primary">
+                    <div class="card-header card-header-success">
                         <h3 style="margin: 0px">{{ __('Registro de incidencias') }}</h3>
                         <p class="card-category">{{ __('Bitácora') }}</p>
                     </div>
@@ -72,6 +72,7 @@
             buttons : [ {
                 extend : 'excel',
                 text : 'Export to Excel',
+                className: 'excelButton',
                 exportOptions : {
                     modifier : {
                         // DataTables core
@@ -94,12 +95,14 @@
                 {"data": "ticket"},
                 {"data": "anillamador"},
                 {"data": "dni"},
-                {"data": "pir"},
+                {"data": "coment"},
                 {"data": "tmo"}
             ]
         } );
+        $('.excelButton').each(function() {
+           $(this).removeClass('btn btn-secondary buttons-excel buttons-html5').addClass('btn btn-sm btn-primary')
+        });
     } );
-    table.buttons().container().appendTo( '#table_wrapper .col-md-6:eq(0)');
 
 </script>
 @endsection

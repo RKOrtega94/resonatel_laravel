@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <div class="card" style="margin: 0px;">
-            <div class="card-header card-header-primary">
+            <div class="card-header card-header-success">
                 <h3 style="margin: 0px">{{ __('Registro de incidencias') }}</h3>
                 <p class="card-category">{{ __('Bitácora diaria') }}</p>
             </div>
@@ -20,14 +20,14 @@
                 @endif
                 <div id="table_wrapper" class="table-responsive">
                     <table id="firebaseData" class="table" style="width:100%">
-                        <thead class="text-primary">
+                        <thead class="text-info">
                             <th style="width: 100px">Ticket</th>
                             <th style="width: 100px">Anillamador</th>
                             <th style="width: 100px">Cédula</th>
                             <th>PIR / Comment</th>
                             <th style="width: 250px">Duración</th>
                         </thead>
-                        <tfoot class="text-primary">
+                        <tfoot class="text-info">
                             <th style="width: 100px">Ticket</th>
                             <th style="width: 100px">Anillamador</th>
                             <th style="width: 100px">Cédula</th>
@@ -163,8 +163,6 @@
                         document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 0%</h6>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 0%</p>";
                     }
-
-                    return 'Promedio TMO: ' + min + ':' + seg;
                 };
 
                 // Update footer

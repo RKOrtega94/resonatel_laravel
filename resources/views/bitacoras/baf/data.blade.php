@@ -59,9 +59,8 @@
         $('#firebaseData').DataTable( {
             serverSide: true,
             ajax: {
-                url: '/api/data/{{auth()->user()->user}}',
+                url: '/api/group/{{auth()->user()->group}}',
                 type: 'GET',
-
             dataSrc: 'data'
             },
             columns: [
@@ -69,7 +68,7 @@
                 {"data": "ticket"},
                 {"data": "anillamador"},
                 {"data": "dni"},
-                {"data": "pir"},
+                {"data": "coment"},
                 {"data": "tmo"}
             ]
         } );

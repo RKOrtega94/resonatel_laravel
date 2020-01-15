@@ -8,7 +8,7 @@
                 <form action="{{route('bitacora.store')}}" method="post" autocomplete="off" class="form-horizontal">
                     @csrf
                     <div class="card" style="margin-top: 0px;">
-                        <div class="card-header card-header-primary">
+                        <div class="card-header card-header-success">
                             <h3 style="margin: 0px">{{ __('Registro de incidencias') }}</h3>
                             <p class="card-category">{{ __('Registro de bitácora') }}</p>
                         </div>
@@ -30,7 +30,7 @@
                                     <div id="tmo"></div>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <a href="{{ route('bitacora.index') }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('bitacora.index') }}" class="btn btn-sm btn-info">
                                         <span class="sidebar-mini">
                                             <i class="material-icons">storage</i>
                                             {{ __('Data') }}
@@ -50,7 +50,7 @@
                             @endswitch
                         </div>
                         <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+                            <button type="submit" class="btn btn-success">{{ __('Guardar') }}</button>
                         </div>
                     </div>
                 </form>
