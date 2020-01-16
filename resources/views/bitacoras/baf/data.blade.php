@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card" style="margin-top: 0px;">
-                    <div class="card-header card-header-danger">
+                    <div class="card-header card-header-success">
                         <h3 style="margin: 0px">{{ __('Registro de incidencias') }}</h3>
                         <p class="card-category">{{ __('Bitácora general') }}</p>
                     </div>

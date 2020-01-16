@@ -8,7 +8,7 @@
                 <form action="{{route('bitacora.store')}}" method="post" autocomplete="off" class="form-horizontal">
                     @csrf
                     <div class="card" style="margin-top: 0px;">
-                        <div class="card-header card-header-danger">
+                        <div class="card-header card-header-success">
                             <h3 style="margin: 0px">{{ __('Registro de incidencias') }}</h3>
                             <p class="card-category">{{ __('Registro de bitácora') }}</p>
                         </div>
