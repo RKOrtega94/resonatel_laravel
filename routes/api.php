@@ -49,17 +49,18 @@ Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
 
     $username = $user->user;
 
-    $tickets = $database->getReference("tickets/baf/$year/$month/$day/$username");
-
-    foreach ($tickets->getChildKeys() as $ticket) {
-        $values = $database->getReference("tickets/baf/$year/$month/$day/$username/$ticket");
-        //$values->update([
-        //    'user' => $username
-        //]);
-        array_push($data, $values->getValue());
+    try {
+        $tickets = $database->getReference("tickets/baf/$year/$month/$day/$username");
+        foreach ($tickets->getChildKeys() as $ticket) {
+            $values = $database->getReference("tickets/baf/$year/$month/$day/$username/$ticket");
+            //$values->update([
+            //    'user' => $username
+            //]);
+            array_push($data, $values->getValue());
+        }
+        return DataTables::of($data)->toJson();
+    } catch (Exception $e) {
     }
-
-    return DataTables::of($data)->toJson();
 });
 
 Route::get('group/{group}', function (Request $request, $group) {

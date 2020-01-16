@@ -3,12 +3,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-primary">
+                <div class="card" style="margin-top: 0px;">
+                    <div class="card-header card-header-danger">
                         <h3 style="margin: 0px">{{ __('Registro de incidencias') }}</h3>
-                        <p class="card-category">{{ __('Bitácora') }}</p>
+                        <p class="card-category">{{ __('Bitácora general') }}</p>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 text-left">
+                                <div id="tmo"></div>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a href="{{ route('bitacora.create') }}" class="btn btn-sm btn-primary">
+                                    <span class="sidebar-mini">
+                                        <i class="material-icons">assignment</i>
+                                        {{ __('Bitácora') }}
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
                         @if (session('status'))
                         <div class="row">
                             <div class="col-sm-12">
@@ -61,7 +74,10 @@
             ajax: {
                 url: '/api/group/{{auth()->user()->group}}',
                 type: 'GET',
-            dataSrc: 'data'
+            dataSrc: 'data',
+            error: function(){
+                $(".dataTables_empty").eq(0).text("No hay registros disponibles");
+            }
             },
             columns: [
                 {"data": "date"},

@@ -72,15 +72,7 @@
             buttons : [ {
                 extend : 'excel',
                 text : 'Export to Excel',
-                className: 'excelButton',
-                exportOptions : {
-                    modifier : {
-                        // DataTables core
-                        order : 'index',  // 'current', 'applied', 'index',  'original'
-                        page : 'all',      // 'all',     'current'
-                        search : 'none'     // 'none',    'applied', 'removed'
-                    }
-                }
+                className: 'excelButton'
             } ],
             serverSide: false,
             ajax: {

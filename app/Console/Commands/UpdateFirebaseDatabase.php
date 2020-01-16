@@ -12,7 +12,7 @@ class UpdateFirebaseDatabase extends Command
      *
      * @var string
      */
-    protected $signature = 'update:firebase';
+    protected $signature = 'update:baf';
 
     /**
      * The console command description.

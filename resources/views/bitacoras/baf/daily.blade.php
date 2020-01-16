@@ -20,14 +20,14 @@
                 @endif
                 <div id="table_wrapper" class="table-responsive">
                     <table id="firebaseData" class="table" style="width:100%">
-                        <thead class="text-info">
+                        <thead class="text-primary">
                             <th style="width: 100px">Ticket</th>
                             <th style="width: 100px">Anillamador</th>
                             <th style="width: 100px">Cédula</th>
                             <th>PIR / Comment</th>
                             <th style="width: 250px">Duración</th>
                         </thead>
-                        <tfoot class="text-info">
+                        <tfoot class="text-primary">
                             <th style="width: 100px">Ticket</th>
                             <th style="width: 100px">Anillamador</th>
                             <th style="width: 100px">Cédula</th>
@@ -62,7 +62,10 @@
                 url: '/api/data/baf/daily/{{auth()->user()->user}}',
                 type: 'GET',
 
-            dataSrc: 'data'
+            dataSrc: 'data',
+            error: function(){
+                $(".dataTables_empty").eq(0).text("No hay registros disponibles");
+            }
             },
             columns: [
                 {"data": "ticket"},
