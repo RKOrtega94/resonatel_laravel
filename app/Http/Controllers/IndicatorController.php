@@ -50,7 +50,7 @@ class IndicatorController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -84,6 +84,6 @@ class IndicatorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $id;
     }
 }

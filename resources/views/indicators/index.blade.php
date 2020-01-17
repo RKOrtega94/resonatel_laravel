@@ -90,7 +90,7 @@
                 { "data": "name"  },
                 { "data": "description"  },
                 { "data": function(data){
-                    return "Debe ser " + data['signo'] + " a " + data['meta'] + " %"
+                    return "Debe ser " + data['signo'] + " " + data['meta'] + " %";
                 }  },
                 { "data": "btn"}
             ]
