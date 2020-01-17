@@ -1,5 +1,4 @@
 <form action="{{ route('indicators.destroy', $id) }}" method="post">
-    @csrf
     @method('delete')
     <a rel="tooltip" class="btn btn-primary btn-link" href="{{ route('indicators.show', $id) }}" data-original-title=""
         title="" style="margin: 0%">

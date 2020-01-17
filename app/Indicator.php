@@ -14,7 +14,6 @@ class Indicator extends Model
     public static function indicators()
     {
         return DB::table('indicators')
-            ->get()
-            ->toArray();
+            ->get();
     }
 }

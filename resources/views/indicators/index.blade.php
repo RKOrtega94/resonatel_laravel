@@ -1,12 +1,7 @@
 @extends('layouts.app', ['activePage' => 'indicator', 'titlePage' => __(' - Indicadores')])
 
-@section('custom-header')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.1/css/scroller.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-@endsection
-
 @section('content')
+@csrf
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -41,16 +36,52 @@
                                 <table id="data" class="table table-striped" style="width: 100%">
                                     <thead class="text-primary">
                                         <th>{{ __('Indicador') }}</th>
+                                        <th>{{ __('Campaña') }}</th>
                                         <th>{{ __('Descripción') }}</th>
                                         <th>{{ __('Meta') }}</th>
-                                        <th>{{ __('Opciones') }}</th>
+                                        <th class="td-actions text-right" style="width: 50px">{{ __('Opciones') }}</th>
                                     </thead>
-                                    <tfoot class="text-primary">
-                                        <th>{{ __('Indicador') }}</th>
-                                        <th>{{ __('Descripción') }}</th>
-                                        <th>{{ __('Meta') }}</th>
-                                        <th>{{ __('Opciones') }}</th>
-                                    </tfoot>
+                                    <tbody>
+                                        @foreach ($indicators as $item)
+                                        <tr>
+                                            <td>
+                                                {{ __($item->name) }}
+                                            </td>
+                                            <td>
+                                                {{ __($item->group) }}
+                                            </td>
+                                            <td>
+                                                {{ __($item->description) }}
+                                            </td>
+                                            <td>
+                                                @if ($item->signo == '>')
+                                                {{ __("Debe ser mayor a $item->meta %") }}
+                                                @else
+                                                {{ __("Debe ser menor a $item->meta %") }}
+                                                @endif
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <form action="{{ route('indicators.destroy', $item) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+
+                                                    <a rel="tooltip" class="btn btn-success btn-link"
+                                                        href="{{ route('indicators.edit', $item) }}"
+                                                        data-original-title="" title="">
+                                                        <i class="material-icons">edit</i>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger btn-link"
+                                                        data-original-title="" title=""
+                                                        onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                        <i class="material-icons">close</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -60,41 +91,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('custom-scripts')
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/scroller/2.0.1/js/dataTables.scroller.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#data').DataTable( {
-            serverSide: true,
-            ajax: {
-                url: '/api/indicators',
-                type: 'GET',
-            dataSrc: 'data',
-            error: function(){
-                $(".dataTables_empty").eq(0).text("No hay registros disponibles");
-            }
-            },
-            columns: [
-                { "data": "name"  },
-                { "data": "description"  },
-                { "data": function(data){
-                    return "Debe ser " + data['signo'] + " " + data['meta'] + " %";
-                }  },
-                { "data": "btn"}
-            ]
-        } );
-    });
-</script>
 @endsection

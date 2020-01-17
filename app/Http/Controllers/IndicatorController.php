@@ -13,9 +13,9 @@ class IndicatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Indicator $indicator)
     {
-        return view('indicators.index');
+        return view('indicators.index', ['indicators' => $indicator->paginate()]);
     }
 
     /**
@@ -82,8 +82,10 @@ class IndicatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Indicator $indicator)
     {
-        return $id;
+        $indicator->delete();
+
+        return redirect('indicators')->withStatus(__("Indicador $indicator->name se eliminó correctamente."));
     }
 }
