@@ -6,7 +6,7 @@ use App\Indicator;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
-class IndicatorController extends Controller
+class ApiIndicatorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class IndicatorController extends Controller
      */
     public function index()
     {
-        return view('indicators.index');
+        return DataTables::of(Indicator::indicators())
+            ->addColumn('btn', 'indicators.partials.actions')
+            ->rawColumns(['btn'])
+            ->toJson();
     }
 
     /**
@@ -25,7 +28,7 @@ class IndicatorController extends Controller
      */
     public function create()
     {
-        return view('indicators.create');
+        //
     }
 
     /**
@@ -36,10 +39,7 @@ class IndicatorController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new Indicator();
-        $indicator = $model->create($request->all());
-
-        return redirect('indicators')->withStatus(__("Indicador $indicator->name se guardó correctamente."));
+        //
     }
 
     /**

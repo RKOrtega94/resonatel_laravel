@@ -76,3 +76,5 @@ Route::get('group/{group}', function (Request $request, $group) {
 
     return DataTables::of($data)->toJson();
 });
+
+Route::resource('indicators', 'ApiIndicatorsController');

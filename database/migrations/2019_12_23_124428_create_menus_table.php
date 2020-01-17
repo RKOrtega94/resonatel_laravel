@@ -17,7 +17,7 @@ class CreateMenusTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 25)->nullable(false);
             $table->string('brand', 50)->nullable();
-            $table->string('slug', 50)->nullable()->unique();
+            $table->string('slug', 50)->nullable();
             $table->string('icon', 50)->nullable();
             $table->unsignedInteger('parent')->default(0);
             $table->smallInteger('order')->default(200);

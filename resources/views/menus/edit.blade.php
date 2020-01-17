@@ -108,6 +108,22 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Order') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group{{ $errors->has('order') ? ' has-danger' : '' }}">
+                                        <input type="text"
+                                            class="form-control{{ $errors->has('order') ? ' is-invalid' : '' }}"
+                                            name="order" id="input-order" type="text" placeholder="{{ __('Order') }}"
+                                            value="{{ old('order', $menuItem->order) }}" required="true"
+                                            aria-required="true" />
+                                        @if ($errors->has('order'))
+                                        <span id="order-error" class="error text-danger"
+                                            for="input-order">{{ $errors->first('order') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-7">
                                     <div class="form-check">

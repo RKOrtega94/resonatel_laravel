@@ -17,7 +17,7 @@ class Menu extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'brand', 'icon', 'menu_item'
+        'name', 'slug', 'brand', 'icon', 'menu_item', 'order', 'parent'
     ];
 
     public static function getMenuAll()
