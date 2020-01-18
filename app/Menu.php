@@ -26,8 +26,7 @@ class Menu extends Model
             ->where('deleted_at', null)
             ->orderby('parent')
             ->orderby('order')
-            ->orderby('name')
-            ->get();
+            ->orderby('name');
     }
 
     public static function getNavs()

@@ -34,6 +34,9 @@
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
+                                        {{ __('Orden') }}
+                                    </th>
+                                    <th>
                                         {{ __('Icon') }}
                                     </th>
                                     <th>
@@ -58,6 +61,9 @@
                                 <tbody>
                                     @foreach($navigations as $nav)
                                     <tr>
+                                        <td>
+                                            {{ __($nav->order) }}
+                                        </td>
                                         <td>
                                             <i class="material-icons">{{ $nav->icon }}</i>
                                         </td>
@@ -107,7 +113,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $navigations->links() }}
                         </div>
                     </div>
                 </div>

@@ -72,7 +72,7 @@
         $('#firebaseData').DataTable( {
             serverSide: true,
             ajax: {
-                url: '/api/group/{{auth()->user()->group}}',
+                url: '/api/data/baf/{{auth()->user()->user}}',
                 type: 'GET',
             dataSrc: 'data',
             error: function(){
