@@ -1,7 +1,6 @@
 @extends('layouts.app', ['activePage' => 'indicator', 'titlePage' => __(' - Indicadores')])
 
 @section('content')
-@csrf
 <div class="content">
     <div class="container-fluid">
         <div class="row">

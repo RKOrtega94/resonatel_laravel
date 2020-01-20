@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Indicator extends Model
 {
     protected $fillable = [
-        'name', 'description', 'meta', 'signo'
+        'name', 'description', 'meta', 'signo', 'group'
     ];
 
     public static function indicators()
