@@ -18,10 +18,10 @@ class BitacoraController extends Controller
      *
      * @return void
      */
-    //public function __construct()
-    //{
-    //    $this->middleware(['auth', 'profile']);
-    //}
+    public function __construct()
+    {
+        $this->middleware(['auth', 'profile']);
+    }
 
     public function index(Request $request)
     {

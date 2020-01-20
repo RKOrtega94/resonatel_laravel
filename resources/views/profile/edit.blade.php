@@ -69,19 +69,6 @@
                 </div>
               </div>
               <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Usuario') }}</label>
-                <div class="col-sm-7">
-                  <div class="form-group{{ $errors->has('user') ? ' has-danger' : '' }}">
-                    <input class="form-control{{ $errors->has('user') ? ' is-invalid' : '' }}" name="user"
-                      id="input-user" type="text" placeholder="{{ __('Usuario') }}"
-                      value="{{ old('user', auth()->user()->user) }}" required="true" aria-required="true" />
-                    @if ($errors->has('user'))
-                    <span id="user-error" class="error text-danger" for="input-user">{{ $errors->first('user') }}</span>
-                    @endif
-                  </div>
-                </div>
-              </div>
-              <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">

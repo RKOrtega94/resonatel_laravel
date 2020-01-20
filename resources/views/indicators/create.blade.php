@@ -20,6 +20,32 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Grupo') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group{{ $errors->has('group') ? ' has-danger' : '' }}">
+                                        <select name="group" id="input-group"
+                                            class="form-control selectpicker show-tick {{ $errors->has('group') ? ' is-invalid' : '' }}"
+                                            data-style="btn-primary">
+                                            @if (auth()->user()->group === "NA")
+                                            <option value="NA">{{ __('N/A') }}</option>
+                                            <option value="BAF">BAF</option>
+                                            <option value="CHAT">CHAT</option>
+                                            <option value="PW">PÁGINA WEB</option>
+                                            <option value="CE">CAMPAÑAS ESPECÍFICAS</option>
+                                            @else
+                                            <option value="{{ auth()->user()->group }}">
+                                                {{ auth()->user()->group }}
+                                            </option>
+                                            @endif
+                                        </select>
+                                        @if ($errors->has('group'))
+                                        <span id="group-error" class="error text-danger"
+                                            for="input-group">{{ $errors->first('group') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Indicador') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
