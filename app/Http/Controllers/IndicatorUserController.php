@@ -46,11 +46,13 @@ class IndicatorUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, User $user)
+    public function show(Request $request, $user)
     {
-        $ip = $request->ip();
-
-        return "ip: $ip";
+        if ($request->ip() == "190.152.167.169") {
+            return $user;
+        } else {
+            abort(403);
+        }
     }
 
     /**
