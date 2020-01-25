@@ -19,7 +19,7 @@ class CreateIndicatorUserTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('indicator_id');
             $table->foreign('indicator_id')->references('id')->on('indicators');
-            $table->decimal('value', 5, 2)->nullable(false);
+            $table->decimal('value', 5, 2)->nullable(false)->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

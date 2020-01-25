@@ -76,7 +76,7 @@
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                @if ($profile->id != 1)
+                                                @if ($profile->id > 5)
                                                 <button type="button" class="btn btn-danger btn-link"
                                                     data-original-title="" title=""
                                                     onclick="confirm('{{ __("Are you sure you want to delete this Profile?") }}') ? this.parentElement.submit() : ''">

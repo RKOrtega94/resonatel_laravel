@@ -57,7 +57,7 @@ class MenuController extends Controller
                 'menu_item' => 0
             ])->all());
         }
-        return redirect()->route('menu.index')->withStatus(__("Route successfully created."));;
+        return redirect()->route('menu.index')->withStatus(__("Route $menu->name successfully created."));
     }
 
     /**
@@ -101,7 +101,7 @@ class MenuController extends Controller
                 'menu_item' => 0
             ])->all());
         }
-        return redirect()->route('menu.index')->withStatus(__('Page successfully updated.'));
+        return redirect()->route('menu.index')->withStatus(__("Page $menu->name successfully updated."));
     }
 
     /**
@@ -112,6 +112,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+
+        return redirect()->route('menu.index')->withStatus(__("Route $menu->name successfully deleted."));
     }
 }

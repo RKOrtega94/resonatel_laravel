@@ -82,8 +82,6 @@
     <script src="{{ asset('material') }}/js/settings.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
     @stack('js')
     @yield('custom-scripts')
 </body>

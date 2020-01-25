@@ -43,6 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function indicators()
+    {
+        return $this->belongsToMany('App\Indicator', 'indicator_users');
+    }
+
+    public function profiles()
+    {
+        return $this->belongsToMany('App\Profile', 'users_profiles');
+    }
+
     /**
      * List of all enabled users
      */

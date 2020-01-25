@@ -32,9 +32,15 @@
                             <table id="usersTable" class="table" style="width: 100%">
                                 <thead class="text-primary">
                                     <th>Asesor</th>
+                                    <th>Perfil</th>
+                                    <th>Indicadores</th>
+                                    <th></th>
                                 </thead>
                                 <tfoot class="text-primary">
                                     <th>Asesor</th>
+                                    <th>Perfil</th>
+                                    <th>Indicadores</th>
+                                    <th></th>
                                 </tfoot>
                             </table>
                         </div>
@@ -47,7 +53,6 @@
 @endsection
 
 @section('custom-scripts')
-
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/scroller/2.0.1/js/dataTables.scroller.min.js"></script>
@@ -56,8 +61,36 @@
         $('#usersTable').DataTable({
             serverSide: true,
             ajax: {
-                url: 
-            }
+                url: '/indicator/{{ auth()->user()->user }}',
+                tyoe: 'GET',
+                dataSrc: 'data',
+                error: function() {
+                    $(".dataTables_empty").eq(0).text("No hay registros disponibles");
+                }
+            },
+            columns: [
+               { "data": "firstName", render: function(data, type, row){
+                   return row.firstName + " " + row.lastName
+               }},
+               { "data": null, render: function(data){
+                   var profile = "";
+                   for(var i = 0; i < data.profiles.length; i++){
+                       profile = profile + data.profiles[i].name;
+                       if(i+1 < data.profiles.length){
+                           profile =+ "<br>";
+                       }
+                   }
+                   return profile;
+               } },
+               { "data": null, render: function(data){
+                   if(!data.indicators.length){
+                       return "No posee indicadores";
+                   }
+               }},
+               { "data": "btn",
+                className: "td-actions text-right" }
+            ]
         });
     });
 </script>
+@endsection

@@ -52,8 +52,8 @@ class RolController extends Controller
      */
     public function store(Request $request, Profile $profile)
     {
-        $profile->create($request->all());
-        return redirect()->route('profiles.index')->withStatus(__("Profile successfully created."));
+        $profile = $profile->create($request->all());
+        return redirect()->route('profiles.index')->withStatus(__("Profile $profile->name successfully created."));
     }
 
     /**
@@ -103,7 +103,7 @@ class RolController extends Controller
             $profile = Profile::findOrFail(decrypt($id));
             $profile->update($request->all());
             $profile->menus()->sync($request->pages);
-            return redirect()->route('profiles.index')->withStatus(__("Profile successfully updated."));
+            return redirect()->route('profiles.index')->withStatus(__("Profile $profile->name successfully updated."));
         } catch (Exception $e) {
             abort(500);
         }

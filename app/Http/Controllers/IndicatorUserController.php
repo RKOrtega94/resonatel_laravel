@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Indicator;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 use Yajra\DataTables\DataTables;
 
 class IndicatorUserController extends Controller
@@ -15,8 +18,7 @@ class IndicatorUserController extends Controller
      */
     public function index()
     {
-        $users = User::users();
-        return view('indicators.supervisor.index', ["users" => DataTables::of($users)->toJson()]);
+        return view('indicators.supervisor.index');
     }
 
     /**
@@ -48,11 +50,13 @@ class IndicatorUserController extends Controller
      */
     public function show(Request $request, $user)
     {
-        if ($request->ip() == "190.152.167.169") {
-            return $user;
-        } else {
-            abort(403);
-        }
+        return DataTables::of(User::with('profiles', 'indicators')
+            ->where('group', auth()->user()->group)
+            ->where('id', '!=', auth()->user()->id)
+            ->get())
+            ->addColumn('btn', 'indicators.partials.actions')
+            ->rawColumns(['btn'])
+            ->toJson();
     }
 
     /**
@@ -63,7 +67,9 @@ class IndicatorUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::with('profiles', 'indicators')->find(decrypt($id));
+        $indicators = Indicator::all()->where('group', $user->group);
+        return view('indicators.supervisor.edit', ['user' => $user, 'indicators' => $indicators]);
     }
 
     /**
@@ -73,9 +79,16 @@ class IndicatorUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $userData)
     {
-        //
+        $data = decrypt($userData);
+        $user = User::findOrFail($data->id);
+        $user->indicators()->sync($request->indicators);
+        return redirect()->route('indicator.index')->withStatus(__("Profile successfully updated."));
+        try {
+        } catch (Exception $e) {
+            abort(500);
+        }
     }
 
     /**

@@ -194,7 +194,7 @@ md = {
         ]
       };
 
-      optionsDailySalesChart = {
+      optionsDailySalesChart = {    
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),

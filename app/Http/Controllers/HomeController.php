@@ -8,6 +8,7 @@ use Kreait\Firebase\ServiceAccount;
 use App\Mail\TestEmail;
 use App\Mail\WellcomeMail;
 use App\Page;
+use App\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        return view('dashboard', ['profiles' => Profile::with('users')->get()]);
     }
 }

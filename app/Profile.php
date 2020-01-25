@@ -10,6 +10,11 @@ class Profile extends Model
 {
     use SoftDeletes;
 
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'users_profiles');
+    }
+
     public function menus()
     {
         return $this->belongsToMany('App\Menu', 'profiles_menus');

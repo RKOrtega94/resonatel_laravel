@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <form method="post" action="{{ route('indicators.store') }}" autocomplete="off" class="form-horizontal">
                     @csrf
-                    <div class="card ">
+                    <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">{{ __('Agregar usuario') }}</h4>
                             <p class="card-category"></p>
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
-                            <button type="submit" class="btn btn-primary">{{ __('Add User') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('save') }}</button>
                         </div>
                     </div>
                 </form>

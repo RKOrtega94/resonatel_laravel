@@ -74,10 +74,10 @@
             ajax: {
                 url: '/api/data/baf/{{auth()->user()->user}}',
                 type: 'GET',
-            dataSrc: 'data',
-            error: function(){
-                $(".dataTables_empty").eq(0).text("No hay registros disponibles");
-            }
+                dataSrc: 'data',
+                error: function(){
+                    $(".dataTables_empty").eq(0).text("No hay registros disponibles");
+                }
             },
             columns: [
                 {"data": "date"},

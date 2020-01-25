@@ -9,7 +9,9 @@
 
                 <div class="card card-login card-hidden mb-3">
                     <div class="card-header card-header-success text-center">
-                        <h4 class="card-title"><strong>{{ __('INICIAR SESIÓN') }}</strong></h4>
+                        <h4 class="card-title">
+                            <strong>{{ __('INICIAR SESIÓN') }}</strong>
+                        </h4>
                     </div>
                     <div class="card-body">
                         <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
@@ -57,8 +59,10 @@
                         </div>
                     </div>
                     <div class="card-footer justify-content-center">
-                        <button type="submit"
-                            class="btn btn-outline-success btn-round btn-lg">{{ __('Ingresar') }}</button>
+                        <button type="submit" class="btn btn-outline-success btn-round btn-lg">
+                            <i class="material-icons">fingerprint</i>
+                            {{ __('Ingresar') }}
+                        </button>
                     </div>
                 </div>
             </form>
