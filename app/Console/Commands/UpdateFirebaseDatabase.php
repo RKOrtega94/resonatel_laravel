@@ -40,30 +40,39 @@ class UpdateFirebaseDatabase extends Command
     {
         $database = BitacoraFirebase::firebaseConnection();
 
-        $year = now()->format('Y');
-        $month = now()->format('m');
-        $day = now()->format('d');
+        $newRef = $database->getReference("tickets/baf/2020");
 
-        $data = [];
+        foreach ($newRef->getChildKeys() as $key) {
+            $days = $database->getReference("tickets/baf/2020/$key");
 
-        $inp = file_get_contents('./public/data/baf.json');
-
-        $tempArray = json_decode($inp, true);
-        $users =  $database->getReference("tickets/baf/$year/$month/$day");
-        foreach ($users->getChildKeys() as $user) {
-            echo $user;
-            $ticket = $database->getReference("tickets/baf/$year/$month/$day/$user");
-            foreach ($ticket->getChildKeys() as $ticket) {
-                $values = $database->getReference("tickets/baf/$year/$month/$day/$user/$ticket");
-                $values->update([
-                    'user' => $user
-                ]);
-                $data = array_merge($data, $values->getValue());
-                array_push($tempArray, $data);
-                $validado = array_unique($tempArray, SORT_REGULAR);
-                $jsonData = json_encode($validado);
-                file_put_contents('./public/data/baf.json', $jsonData);
+            foreach ($days->getChildKeys() as $day) {
+                echo $day;
+                $users = $database->getReference("tickets/baf/2020/$key/$day");
+                foreach ($users->getChildKeys() as $user) {
+                    echo $user;
+                    $tickets = $database->getReference("tickets/baf/2020/$key/$day/$user");
+                    foreach ($tickets->getChildKeys() as $ticket) {
+                        echo $ticket;
+                        $ticketRef = $database->getReference("tickets/baf/$ticket");
+                        echo $ticketRef->set(
+                            $tickets->getValue()
+                        );
+                    }
+                }
             }
+
+            //$ticket = $values->getChild('ticket')->getValue();
+            //
+            //$ticketRef = $database->getReference("tickets/baf/$ticket");
+            //
+
+            //
+            //$database->getReference("tickets/baf/data/$key")->remove();
+            //
+            //$ticketRef->update([
+            //    'escalado' => $values->getChild('escalado') ? $values->getChild('escalado')->getValue() : 'NO INFO',
+            //    'hour' => $values->getChild('hour') ? $values->getChild('hour') : '00:00'
+            //]);
         }
     }
 }

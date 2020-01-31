@@ -2,11 +2,9 @@
 
 namespace App;
 
-use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BitacoraFirebase extends Model
@@ -34,44 +32,5 @@ class BitacoraFirebase extends Model
             ->withDatabaseUri('https://resonatel.firebaseio.com');
 
         return $factory->createDatabase();
-    }
-
-    public static function queryBitacora()
-    {
-        // Define connection
-        $database = BitacoraFirebase::firebaseConnection();
-
-        // References
-        $yearReference = [];
-        $years = [];
-        $monthReference = [];
-        $dayReference = [];
-        $userReference = [];
-        $ticketReference = [];
-
-        // Getting years
-        $yearReference = $database->getReference('tickets/baf');
-        $years = $yearReference->getChildKeys();
-
-        // Getting months
-        foreach ($years as $year) {
-            $months = $database->getReference("tickets/baf/$year");
-            $monthReference = array_merge($monthReference, $months->getChildKeys());
-            foreach ($months->getChildKeys() as $month) {
-                $days = $database->getReference("tickets/baf/$year/$month");
-                $dayReference = array_merge($dayReference, $days->getChildKeys());
-                foreach ($days->getChildKeys() as $day) {
-                    $user = $database->getReference("tickets/baf/$year/$month/$day");
-                    $userReference = array_merge($userReference, $user->getChildKeys());
-                    foreach ($user->getChildKeys() as $user) {
-                        if ($user == Auth::user()->user) {
-                            $ticket = $database->getReference("tickets/baf/$year/$month/$day/$user");
-                            $ticketReference = array_merge($ticketReference, $ticket->getChildKeys());
-                        }
-                    }
-                }
-            }
-        }
-        return $ticketReference;
     }
 }

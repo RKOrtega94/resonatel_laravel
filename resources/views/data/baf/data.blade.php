@@ -24,20 +24,24 @@
                         <div id="table_wrapper" class="table-responsive">
                             <table id="firebaseData" class="table" style="width:100%">
                                 <thead class="text-primary">
-                                    <th>Fecha</th>
-                                    <th style="width: 100px">Usuario</th>
-                                    <th style="width: 100px">Ticket</th>
-                                    <th style="width: 150px">Anillamador</th>
-                                    <th style="width: 150px">Cédula</th>
-                                    <th>PIR / Comment</th>
-                                    <th>Duración</th>
+                                    <th style="width: 100px">Fecha</th>
+                                    <th style="width: 50px">Hora</th>
+                                    <th style="width: 50px">Usuario</th>
+                                    <th style="width: 50px">Ticket</th>
+                                    <th style="width: 50px">Anillamador</th>
+                                    <th style="width: 50px">Cédula</th>
+                                    <th style="width: 50px">Escalado</th>
+                                    <th style="width: 500px">PIR / Comment</th>
+                                    <th style="width: 50px">Duración</th>
                                 </thead>
                                 <tfoot class="text-primary">
                                     <th>Fecha</th>
+                                    <th>Hora</th>
                                     <th>Usuario</th>
                                     <th>Ticket</th>
                                     <th>Anillamador</th>
                                     <th>Cédula</th>
+                                    <th>Escalado</th>
                                     <th>PIR / Comment</th>
                                     <th>Duración</th>
                                 </tfoot>
@@ -76,17 +80,19 @@
             } ],
             serverSide: false,
             ajax: {
-                url: '/api/group/{{auth()->user()->group}}',
+                url: '/data/{{auth()->user()->group}}',
                 type: 'GET',
 
             dataSrc: 'data'
             },
             columns: [
                 {"data": "date"},
+                {"data": "hour"},
                 {"data": "user"},
                 {"data": "ticket"},
                 {"data": "anillamador"},
                 {"data": "dni"},
+                {"data": "escalado"},
                 {"data": "coment"},
                 {"data": "tmo"}
             ]

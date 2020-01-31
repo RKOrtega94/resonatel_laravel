@@ -46,7 +46,7 @@
 
                             @break
                             @default
-
+                            {{auth()->user()->group}}
                             @endswitch
                         </div>
                         <div class="card-footer ml-auto mr-auto">

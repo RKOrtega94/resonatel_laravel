@@ -3,50 +3,60 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-7 col-md-6">
-                @if (auth()->user()->created_at == auth()->user()->updated_at)
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-danger">
-                                <div class="row">
-                                    <i class="material-icons">report</i>
-                                    <h4 class="card-title">
-                                        {{ __('Aviso!!') }}
-                                    </h4>
-                                </div>
+            @include('helpers.passwordalert')
+            @include('helpers.user')
+        </div>
+        <div class="container-fluid row">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 100%">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col">
+                                {!! $tmo->container() !!}
                             </div>
-                            <div class="card-body">
-                                <h6 class="card-subtitle mb-2 text-muted">Problemas de seguridad</h6>
-                                <p class="card-text">Es necesario realiazar el cambio de contraseña de su perfil.</p>
-                                <a href="{{ route('profile.edit') }}" class="card-link text-danger">Cambiar
-                                    contraseña</a>
+                            <div class="col">
+                                {!! $test1->container() !!}
+                            </div>
+                            <div class="col">
+                                {!! $test2->container() !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col">
+                                {!! $tmo->container() !!}
+                            </div>
+                            <div class="col">
+                                {!! $test1->container() !!}
+                            </div>
+                            <div class="col">
+                                {!! $test2->container() !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col">
+                                {!! $tmo->container() !!}
+                            </div>
+                            <div class="col">
+                                {!! $test1->container() !!}
+                            </div>
+                            <div class="col">
+                                {!! $test2->container() !!}
                             </div>
                         </div>
                     </div>
                 </div>
-                @endif
-            </div>
-            <div class="col-lg-5 col-md-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">person</i>
-                        </div>
-                        <p class="card-title">{{ auth()->user()->lastName}} {{ auth()->user()->firstName }}</p>
-                        <p class="card-title">{{ __('Rol: ') }}
-                            <span class="card-category">
-                                @foreach ($profiles as $profile)
-                                @if ($profile->users->pluck('id')->contains(auth()->user()->id))
-                                {{ __($profile->name) }}
-                                @endif
-                                @endforeach
-                            </span>
-                        </p>
-                        <p class="card-title">{{ __("Campaña:") }} <span
-                                class="card-category">{{ auth()->user()->group }}</span></p>
-                    </div>
-                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
         <!--<div class="row">
@@ -425,11 +435,14 @@
 </div>
 @endsection
 
-@push('js')
+@section('custom-scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+{!! $tmo->script() !!}
+{!! $test1->script() !!}
+{!! $test2->script() !!}
 <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-    });
+    window.{{ $tmo->id }}
+    window.{{ $test1->id }}
+    window.{{ $test2->id }}
 </script>
-@endpush
+@endsection

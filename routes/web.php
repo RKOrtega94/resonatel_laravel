@@ -16,6 +16,9 @@
 //});
 
 // Redirect to home page
+
+use App\Http\Controllers\DataBitacoraController;
+
 Route::get('/', function () {
     return redirect('home');
 });
@@ -91,4 +94,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+
+    // Get all data from group
+    Route::get('data/{campana}', 'DataBitacoraController@getAll');
 });

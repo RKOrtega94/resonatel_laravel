@@ -65,16 +65,17 @@ Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
 
 Route::get('group/{group}', function (Request $request, $group) {
 
+    $database = BitacoraFirebase::firebaseConnection();
+
     $data = [];
 
-    $inp = file_get_contents('../public/data/baf.json');
-    $array = json_decode($inp, true);
-
-    foreach ($array as $value) {
-        $data = array_merge($data, [$value]);
-    }
+    $data = $database->getReference("tickets/$group")->getSnapshot()->getValue();
 
     return DataTables::of($data)->toJson();
 });
 
 Route::resource('indicators', 'ApiIndicatorsController');
+
+Route::get('test', function () {
+    return 'ok';
+});
