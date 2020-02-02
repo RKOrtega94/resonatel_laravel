@@ -11,6 +11,11 @@ class Indicator extends Model
         'name', 'description', 'meta', 'signo', 'group'
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'indicator_users');
+    }
+
     public static function indicators()
     {
         return DB::table('indicators')
