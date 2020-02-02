@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-class Menu extends Model
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
+
+class Menu extends Model implements Sortable
 {
     use SoftDeletes;
+    use SortableTrait;
 
     //protected
     /**
@@ -18,6 +22,11 @@ class Menu extends Model
      */
     protected $fillable = [
         'name', 'slug', 'brand', 'icon', 'menu_item', 'order', 'parent'
+    ];
+
+    public $sortable = [
+        'order' => 'order_column',
+        'sort_when_creating' => true,
     ];
 
     public static function getMenuAll()
