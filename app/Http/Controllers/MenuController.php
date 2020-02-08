@@ -25,7 +25,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('menus.index', ['navigations' => Menu::orderBy('order', 'asc')->orderBy('parent', 'asc')->paginate(100)]);
+        $menu = Menu::orderBy('order', 'asc')->orderBy('parent', 'asc')->get();
+        return view('menus.index', ['navigations' => $menu]);
     }
 
     /**

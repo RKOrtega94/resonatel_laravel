@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-use Spatie\EloquentSortable\Sortable;
-use Spatie\EloquentSortable\SortableTrait;
+use Kyslik\ColumnSortable\Sortable;
 
-class Menu extends Model implements Sortable
+class Menu extends Model
 {
-    use SoftDeletes;
-    use SortableTrait;
+    use SoftDeletes, Sortable;
 
     //protected
     /**
@@ -25,8 +23,10 @@ class Menu extends Model implements Sortable
     ];
 
     public $sortable = [
-        'order' => 'order_column',
-        'sort_when_creating' => true,
+        'id',
+        'name',
+        'order',
+        
     ];
 
     public static function getMenuAll()

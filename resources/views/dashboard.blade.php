@@ -9,47 +9,43 @@
         <div class="container-fluid row">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 100%">
                 <div class="carousel-inner">
+                    @foreach ($keys as $key)
+                    <div class="carousel-item {{ $key == 'BAF'? 'active':'' }}">
+                        test
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 100%">
+                <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
                             <div class="col">
-                                {!! $tmo->container() !!}
+
                             </div>
                             <div class="col">
-                                {!! $test1->container() !!}
+
                             </div>
                             <div class="col">
-                                {!! $test2->container() !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col">
-                                {!! $tmo->container() !!}
-                            </div>
-                            <div class="col">
-                                {!! $test1->container() !!}
-                            </div>
-                            <div class="col">
-                                {!! $test2->container() !!}
+
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="row">
                             <div class="col">
-                                {!! $tmo->container() !!}
+
                             </div>
                             <div class="col">
-                                {!! $test1->container() !!}
+
                             </div>
                             <div class="col">
-                                {!! $test2->container() !!}
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
         <!--<div class="row">
             <div class="col-md-4">
@@ -429,12 +425,6 @@
 
 @section('custom-scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-{!! $tmo->script() !!}
-{!! $test1->script() !!}
-{!! $test2->script() !!}
 <script>
-    window.{{ $tmo->id }}
-    window.{{ $test1->id }}
-    window.{{ $test2->id }}
 </script>
 @endsection
