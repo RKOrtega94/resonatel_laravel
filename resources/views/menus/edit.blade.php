@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => $activePage ?? '', 'titlePage' => __(' - User Management')])
+@extends('layouts.app', ['activePage' => $activePage ?? '', 'titlePage' => __(' - Menu Management')])
 
 @section('content')
 <div class="content">
@@ -12,7 +12,7 @@
 
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Edit User') }}</h4>
+                            <h4 class="card-title">{{ __('Edit Menu') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
@@ -108,28 +108,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Order') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('order') ? ' has-danger' : '' }}">
-                                        <input type="text"
-                                            class="form-control{{ $errors->has('order') ? ' is-invalid' : '' }}"
-                                            name="order" id="input-order" type="text" placeholder="{{ __('Order') }}"
-                                            value="{{ old('order', $menuItem->order) }}" required="true"
-                                            aria-required="true" />
-                                        @if ($errors->has('order'))
-                                        <span id="order-error" class="error text-danger"
-                                            for="input-order">{{ $errors->first('order') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-7">
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" name="menu_item"
-                                                {{ $menuItem?'checked':'' }}>
+                                                {{ $menuItem->menu_item?'checked':'' }}>
                                             {{ __('Is Menu?') }}
                                             <span class="form-check-sign">
                                                 <span class="check"></span>

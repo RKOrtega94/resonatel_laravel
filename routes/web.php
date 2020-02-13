@@ -97,4 +97,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Get all data from group
     Route::get('data/{campana}', 'DataBitacoraController@getAll');
+
+    Route::get('menu/sortable/{id}/{sorting}', 'SortableController@sortable');
+
+    // Delete Menu
+    Route::get('menu/remove/{id}', 'MenuController@delete')->name('menu.remove');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class MenuController extends Controller
 {
@@ -116,5 +117,16 @@ class MenuController extends Controller
         $menu->delete();
 
         return redirect()->route('menu.index')->withStatus(__("Route $menu->name successfully deleted."));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function remove($id)
+    {
+        return $id;
     }
 }

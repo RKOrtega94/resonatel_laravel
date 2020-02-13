@@ -57,18 +57,29 @@
                                 @foreach ($navigations as $navItem)
                                 <li id="{{ $navItem->id }}" class="tn-sm btn-dark text-white text-bold btn-round">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-3">
                                             <span>
                                                 <i class="material-icons">{{ $navItem->icon }}</i>
                                                 {{ $navItem->name }}
                                             </span>
                                         </div>
-                                        <div class="col text-right">
-                                            <a href="{{ route('menu.update', encrypt($navItem->id))}}" class="text-white"
+                                        <div class="col-1">
+                                            {{ $navItem->menu_item?'Menu':'Route' }}
+                                        </div>
+                                        <div class="col-3">
+                                            {{ $navItem->slug!='#'?$navItem->slug:'' }}
+                                        </div>
+                                        <div class="col-4">
+                                            @foreach ($navigations as $parent)
+                                            {{ $navItem->parent==$parent->id?"Parent to: $parent->name":'' }}
+                                            @endforeach
+                                        </div>
+                                        <div class="col-1 text-right">
+                                            <a href="{{ route('menu.edit', $navItem->id)}}" class="text-white"
                                                 title="Editar">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <a href="{{ route('menu.destroy', encrypt($navItem->id))}}" class="text-danger"
+                                            <a href="{{ route('menu.remove', $navItem->id)}}" class="text-danger"
                                                 title="Eliminar">
                                                 <i class="material-icons">delete</i>
                                             </a>
@@ -89,9 +100,19 @@
 @section('custom-scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
-    $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-    } );
+    $(function() {
+        $("#sortable").sortable({
+            stop: function() {
+                $.map($(this).find('li'), function(el) {
+                    var id = el.id;
+                    var sorting = $(el).index();
+                    $.ajax({
+                        url: 'menu/sortable/'+id+'/'+sorting,
+                        type: 'GET',
+                    });
+                });
+            }
+        });
+    });
 </script>
 @endsection
