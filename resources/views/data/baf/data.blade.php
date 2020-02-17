@@ -83,16 +83,44 @@
                 url: '/data/{{auth()->user()->group}}',
                 type: 'GET',
 
-            dataSrc: 'data'
+            dataSrc: 'data',
+            defaultContent: 'N/A'
             },
             columns: [
                 {"data": "date"},
-                {"data": "hour"},
-                {"data": "user"},
+                {"data": function(data, type, set){
+                    try {
+                        if(data['hour']){
+                            return data['hour']
+                        }
+                        return "00:00";
+                    } catch (err){
+                        return "00:00";
+                    }
+                }},
+                {"data": function(data, type, set){
+                    try {
+                        if(data['user']){
+                            return data['user']
+                        }
+                        return "No User";
+                    } catch (err){
+                        return "No user";
+                    }
+                }},
                 {"data": "ticket"},
                 {"data": "anillamador"},
                 {"data": "dni"},
-                {"data": "escalado"},
+                {"data":  function(data, type, set){
+                    try {
+                        if(data['escalado']){
+                            return data['escalado']
+                        }
+                        return "No info";
+                    } catch (err){
+                        return "No info";
+                    }
+                }},
                 {"data": "coment"},
                 {"data": "tmo"}
             ]

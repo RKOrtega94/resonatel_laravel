@@ -3,21 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\BitacoraFirebase;
+use Exception;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class DataBitacoraController extends Controller
 {
-    public function getAll()
+    public function getAll($campania)
     {
-        $database = BitacoraFirebase::firebaseConnection();
-
         $data = [];
 
-        $ref = $database->getReference("tickets/baf");
+        $database = BitacoraFirebase::firebaseConnection();
 
-        $data = $ref->getValue();
+        $camp = strtolower($campania);
 
-        return DataTables::of($data)->toJson();
+        try {
+            $tickets = $database->getReference("$camp/ticket")->orderByChild("date")->getSnapshot();
+            $data = $tickets;
+            return DataTables::of($data->getValue())->toJson();
+        } catch (Exception $e) {
+            return $e;
+        }
     }
 }

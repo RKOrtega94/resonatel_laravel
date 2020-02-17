@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\BitacoraFirebase;
 use Exception;
 use Illuminate\Console\Command;
+use Kreait\Firebase\Util\JSON;
 
 class UpdateFirebaseDatabase extends Command
 {
@@ -41,26 +42,25 @@ class UpdateFirebaseDatabase extends Command
     {
         $database = BitacoraFirebase::firebaseConnection();
 
-        $newRef = $database->getReference("tickets/baf");
+        $newRef = $database->getReference("tickets/baf/2020");
 
-        foreach ($newRef->getChildKeys() as $key) {
-            $ticketRef = $database->getReference("tickets/baf/$key");
-            if ($ticketRef->getKey() == $ticketRef->getChildKeys()) {
-                echo $ticketRef->getKey();
+        foreach ($newRef->getChildKeys() as $month) {
+            $monthRef = $database->getReference("tickets/baf/2020/$month");
+            foreach ($monthRef->getChildKeys() as $day) {
+                $dayRef = $database->getReference("tickets/baf/2020/$month/$day");
+                foreach ($dayRef->getChildKeys() as $user) {
+                    $userRef = $database->getReference("tickets/baf/2020/$month/$day/$user");
+                    foreach ($userRef->getChildKeys() as $ticket) {
+                        $data = $database->getReference("tickets/baf/2020/$month/$day/$user/$ticket");
+                        $data->update([
+                            'user' => $user
+                        ]);
+                        $newData = $database->getReference("baf/ticket/$ticket");
+                        $newData->set($data->getValue());
+                        echo "$newData";
+                    }
+                }
             }
         }
-
-        //$ticket = $values->getChild('ticket')->getValue();
-        //
-        //$ticketRef = $database->getReference("tickets/baf/$ticket");
-        //
-
-        //
-        //$database->getReference("tickets/baf/data/$key")->remove();
-        //
-        //$ticketRef->update([
-        //    'escalado' => $values->getChild('escalado') ? $values->getChild('escalado')->getValue() : 'NO INFO',
-        //    'hour' => $values->getChild('hour') ? $values->getChild('hour') : '00:00'
-        //]);
     }
 }

@@ -26,40 +26,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('data/baf/{user}', function (Request $request, User $user) {
     $data = [];
 
-    $inp = file_get_contents('../public/data/baf.json');
-    $array = json_decode($inp, true);
+    $database = BitacoraFirebase::firebaseConnection();
 
-    foreach ($array as $value) {
-        if ($value['user'] == $user->user) {
-            $data = array_merge($data, [$value]);
-        }
+    try {
+        $tickets = $database->getReference("baf/ticket")->orderByChild("user")->equalTo("$user->user")->getSnapshot();
+        $data = $tickets;
+        return DataTables::of($data->getValue())->toJson();
+    } catch (Exception $e) {
+        return $e;
     }
-
-    return DataTables::of($data)->toJson();
 });
 
 Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
     $data = [];
 
-    $year = now()->format('Y');
-    $month = now()->format('m');
-    $day = now()->format('d');
-
     $database = BitacoraFirebase::firebaseConnection();
 
-    $username = $user->user;
-
     try {
-        $tickets = $database->getReference("tickets/baf/$year/$month/$day/$username");
-        foreach ($tickets->getChildKeys() as $ticket) {
-            $values = $database->getReference("tickets/baf/$year/$month/$day/$username/$ticket");
-            //$values->update([
-            //    'user' => $username
-            //]);
-            array_push($data, $values->getValue());
-        }
-        return DataTables::of($data)->toJson();
+        $tickets = $database->getReference("baf/ticket")->orderByChild("user")->equalTo("$user->user")->getSnapshot();
+        $data = $tickets;
+        return DataTables::of($data->getValue())->toJson();
     } catch (Exception $e) {
+        return $e;
     }
 });
 
