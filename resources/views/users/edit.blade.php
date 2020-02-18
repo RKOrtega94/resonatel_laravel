@@ -29,7 +29,8 @@
                                         <select class="form-control {{ $errors->has('role_id') ? ' is-invalid' : '' }}"
                                             name="role_id" id="input-role_id" required="true" aria-required="true">
                                             @foreach ($roles as $rol)
-                                            <option value="{{$rol->id}}" {{ $rol->id == $user->role_id?'selected':'' }}>
+                                            <option value="{{$rol->id}}"
+                                                {{ $user->profiles->pluck('id')->contains($rol->id)?'selected':'' }}>
                                                 {{ $rol->name }}
                                             </option>
                                             @endforeach
@@ -50,16 +51,16 @@
                                             <option value="NA" {{ "NA" == $user->group?'selected':'' }}>
                                                 NA
                                             </option>
-                                            <option value="BAF" {{ "NA" == $user->group?'selected':'' }}>
+                                            <option value="BAF" {{ "BAF" == $user->group?'selected':'' }}>
                                                 Banda Ancha Fija
                                             </option>
-                                            <option value="CHAT" {{ "NA" == $user->group?'selected':'' }}>
+                                            <option value="CHAT" {{ "CHAT" == $user->group?'selected':'' }}>
                                                 Soporte Chat
                                             </option>
-                                            <option value="PW" {{ "NA" == $user->group?'selected':'' }}>
+                                            <option value="PW" {{ "PW" == $user->group?'selected':'' }}>
                                                 Página Web
                                             </option>
-                                            <option value="CE" {{ "NA" == $user->group?'selected':'' }}>
+                                            <option value="CE" {{ "CE" == $user->group?'selected':'' }}>
                                                 Campañas Específicas
                                             </option>
                                         </select>

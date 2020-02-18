@@ -70,7 +70,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-8">
         <div class="row">
             <label class="col-sm-2 col-form-label" for="tmo">{{ __('Comentario') }}</label>
             <div class="col-sm-10">
@@ -86,11 +86,12 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-2" id="div_abierto">
         <div class="row">
             <div class="form-check" style="margin: 15px">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="status" {{ old('status') ? 'checked' : '' }}>
+                    <input id="abierto" class="form-check-input" type="checkbox" name="status"
+                        {{ old('status') ? 'checked' : '' }} onclick="checkFluency()">
                     {{ __('Ticket abierto?') }}
                     <span class="form-check-sign">
                         <span class="check"></span>
@@ -99,4 +100,55 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-2" id="div_escalado_n2">
+        <div class="row">
+            <div class="form-check" style="margin: 15px">
+                <label class="form-check-label">
+                    <input id="escalado_n2" class="form-check-input" type="checkbox" name="escalado_n2"
+                        {{ old('escalado_n2') ? 'checked' : '' }} onclick="checkFluency()">
+                    {{ __('Se escaló el ticket?(N2 / VT)') }}
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
 </div>
+<div id="escalado" class="row" hidden>
+    <label class="col-sm-2 col-form-label">{{ __('PIR') }}</label>
+    <div class="col-sm-7">
+        <div class="form-pir{{ $errors->has('pir') ? ' has-danger' : '' }}">
+            <select name="pir" id="input-pir" class="form-control{{ $errors->has('pir') ? ' is-invalid' : '' }}">
+                <option value="N/A">{{ __('Seleccione una opción') }}</option>
+                <option value="PETICIÓN / COMERCIAL">PETICIÓN / COMERCIAL</option>
+                <option value="RECLAMO / FACTURACIÓN">RECLAMO / FACTURACIÓN</option>
+                <option value="RECLAMO / QUEJA DE ATENCIÓN">RECLAMO / QUEJA DE ATENCIÓN</option>
+                <option value="SOPORTE / COMERCIAL">SOPORTE / COMERCIAL</option>
+                <option value="SOPORTE / TÉCNICO">SOPORTE / TÉCNICO</option>
+            </select>
+            @if ($errors->has('pir'))
+            <span id="pir-error" class="error text-danger" for="input-pir">{{ $errors->first('pir') }}</span>
+            @endif
+        </div>
+    </div>
+</div>
+<script>
+    function checkFluency()
+{
+  var check = document.getElementById('escalado_n2');
+  var abierto = document.getElementById('abierto');
+  if(check.checked){
+    document.getElementById('div_abierto').setAttribute("hidden", "true");
+      document.getElementById('escalado').removeAttribute("hidden");
+  } else {
+    document.getElementById('div_abierto').removeAttribute("hidden");
+    document.getElementById('escalado').setAttribute("hidden", "true")
+  }
+  if(abierto.checked){
+    document.getElementById('div_escalado_n2').setAttribute("hidden", "true");
+  } else {
+    document.getElementById('div_escalado_n2').removeAttribute("hidden");
+  }
+}
+</script>

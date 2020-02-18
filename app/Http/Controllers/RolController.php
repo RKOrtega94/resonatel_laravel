@@ -81,13 +81,11 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        try {
-            $profile = Profile::findOrFail(decrypt($id));
-            $pages = Menu::all();
-            return view('profiles.edit', compact(['profile', 'pages']));
-        } catch (Exception $e) {
-            abort(404);
-        }
+        $profile = Profile::findOrFail(decrypt($id));
+        $pages = Menu::where('deleted_at', null)
+            ->orderBy('order')
+            ->get();
+        return view('profiles.edit', compact(['profile', 'pages']));
     }
 
     /**

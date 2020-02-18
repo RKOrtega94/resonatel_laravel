@@ -96,11 +96,25 @@ class UserController extends Controller
      */
     public function update(User $user, UserRequest $request)
     {
-        $user->update($request->merge([
-            'password' => Hash::make($request->password)
-        ])->all());
-
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        $user->profiles()->sync($request->role_id);
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update([
+                'group' => $request->group,
+                'firstName' => $request->firstName,
+                'lastName' => $request->lastName,
+                'dni' => $request->dni,
+                'email' => $request->email,
+                'user' => $request->user
+            ]);
+        if ($request->password != "" || $request->password != null || $request->password) {
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update([
+                    'password' => Hash::make($request->password)
+                ]);
+        }
+        return redirect()->route('user.index')->withStatus(__("User $user->firstName successfully updated."));
     }
 
     /**

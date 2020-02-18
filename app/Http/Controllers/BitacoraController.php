@@ -48,17 +48,19 @@ class BitacoraController extends Controller
      */
     public function store(Request $request)
     {
-        $year = (new DateTime())->format('Y');
-        $month = (new DateTime())->format('m');
-        $day = (new DateTime())->format('d');
-
+        // Firebase instace
         $database = BitacoraFirebase::firebaseConnection();
 
+        // User group
+        $group = strtolower(auth()->user()->group);
+
+        // Setting data
         $ticket = $database
-            ->getReference("tickets/" . strtolower(auth()->user()->group) . "/$year/$month/$day/" . auth()->user()->user . "/" . $request->ticket)
+            ->getReference("$group/ticket/$request->ticket")
             ->set($request->merge([
                 'date' => now()->format('d/m/Y'),
-                'hour' => now()->format('H:i')
+                'hour' => now()->format('H:i'),
+                'user' => auth()->user()->user
             ])->all());
 
         $key = $ticket->getKey();
