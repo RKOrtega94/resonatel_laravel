@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BitacoraFirebase;
+use App\Http\Requests\BitacoraRequest;
 use App\User;
 use DateTime;
 use Error;
@@ -20,7 +21,7 @@ class BitacoraController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'profile']);
+        $this->middleware(['auth']);
     }
 
     public function index(Request $request)
@@ -46,7 +47,7 @@ class BitacoraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BitacoraRequest $request)
     {
         // Firebase instace
         $database = BitacoraFirebase::firebaseConnection();

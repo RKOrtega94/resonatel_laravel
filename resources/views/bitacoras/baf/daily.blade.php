@@ -6,18 +6,6 @@
                 <p class="card-category">{{ __('Bitácora diaria') }}</p>
             </div>
             <div class="card-body">
-                @if (session('status'))
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <i class="material-icons">close</i>
-                            </button>
-                            <span>{{ session('status') }}</span>
-                        </div>
-                    </div>
-                </div>
-                @endif
                 <div id="table_wrapper" class="table-responsive">
                     <table id="firebaseData" class="table" style="width:100%">
                         <thead class="text-primary">
