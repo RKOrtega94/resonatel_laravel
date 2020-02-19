@@ -58,6 +58,7 @@ class UpdateFirebaseDatabase extends Command
                         $newData = $database->getReference("baf/ticket/$ticket");
                         $newData->set($data->getValue());
                         echo "$newData";
+                        $data->remove();
                     }
                 }
             }
