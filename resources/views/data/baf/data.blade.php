@@ -30,7 +30,8 @@
                                     <th style="width: 50px">Ticket</th>
                                     <th style="width: 50px">Anillamador</th>
                                     <th style="width: 50px">Cédula</th>
-                                    <th style="width: 50px">Escalado</th>
+                                    <th style="width: 50px">Abierto</th>
+                                    <th style="width: 50px">Escalado (N2 / VT)</th>
                                     <th style="width: 500px">PIR / Comment</th>
                                     <th style="width: 50px">Duración</th>
                                 </thead>
@@ -41,7 +42,8 @@
                                     <th>Ticket</th>
                                     <th>Anillamador</th>
                                     <th>Cédula</th>
-                                    <th>Escalado</th>
+                                    <th>Abierto</th>
+                                    <th>Escalado (N2 / VT)</th>
                                     <th>PIR / Comment</th>
                                     <th>Duración</th>
                                 </tfoot>
@@ -89,6 +91,7 @@
             columns: [
                 {"data": "date"},
                 {"data": function(data, type, set){
+                    console.log(data)
                     try {
                         if(data['hour']){
                             return data['hour']
@@ -114,14 +117,37 @@
                 {"data":  function(data, type, set){
                     try {
                         if(data['escalado']){
-                            return data['escalado']
+                            return 'Ticket abierto'
+                        } else if (data['status']) {
+                            return 'Ticket abierto'
                         }
-                        return "No info";
+                        return "N/A";
                     } catch (err){
                         return "No info";
                     }
                 }},
-                {"data": "coment"},
+                {"data": function(data, type, set){
+                    try {
+                        if(data['escalado_n2']){
+                            return 'Escalado'
+                        } else {
+                            return 'Se cerró el ticket';
+                        }
+                    } catch (err){
+                        return "No info";
+                    }
+                }},
+                {"data": function(data, type, set){
+                    try {
+                        if(data['escalado_n2']){
+                            return data['pir']?data['pir']:'Escalado' + ' -> ' + data['coment'];
+                        } else {
+                            return data['coment'];
+                        }
+                    } catch (err){
+                        return "No info";
+                    }
+                }},
                 {"data": "tmo"}
             ]
         } );
