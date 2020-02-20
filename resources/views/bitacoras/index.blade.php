@@ -27,7 +27,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-6 text-left">
-                                    <div id="tmo"></div>
+                                    <div id="tmo" class="font-weight-bold"></div>
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <a href="{{ route('bitacora.index') }}" class="btn btn-sm btn-primary">

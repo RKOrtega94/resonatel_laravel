@@ -91,37 +91,37 @@
                     var seg = parseInt((tmo / 1000) % 60) < 10 ? '0' + parseInt((tmo / 1000) % 60) : parseInt((tmo / 1000) % 60);
 
                     if ((tmo / 1000) < (269)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 0%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 0%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 0%</p>";
                     } else if ((tmo / 1000) >= (270) && (tmo / 1000) <= (299)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 10%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 10%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 10%</p>";
                     } else if ((tmo / 1000) >= (300) && (tmo / 1000) <= (329)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 20%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 20%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 20%</p>";
                     } else if ((tmo / 1000) >= (330) && (tmo / 1000) <= (359)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 30%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 30%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 30%</p>";
                     } else if ((tmo / 1000) >= (360) && (tmo / 1000) <= (389)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 40%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 40%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 40%</p>";
                     } else if ((tmo / 1000) >= (390) && (tmo / 1000) <= (419)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 50%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 50%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 50%</p>";
                     } else if ((tmo / 1000) >= (420) && (tmo / 1000) <= (449)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 60%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 60%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 60%</p>";
                     } else if ((tmo / 1000) >= (450) && (tmo / 1000) <= (479)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 70%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 70%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 70%</p>";
                     } else if ((tmo / 1000) >= (480) && (tmo / 1000) <= (509)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 80%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 80%</h4>";
                         return '<p class=\"text-danger\">Promedio TMO: ' + min + ':' + seg + " 80%</p>";
                     } else if ((tmo / 1000) >= (510) && (tmo / 1000) <= (539)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-warning\">Promedio TMO: ' + min + ':' + seg + " 90%</h6>";
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-warning\">Promedio TMO: ' + min + ':' + seg + " 90%</h4>";
                         return '<p class=\"text-warning\">Promedio TMO: ' + min + ':' + seg + " 90%</p>";
                     } else if ((tmo / 1000) >= (540) && (tmo / 1000) <= (569)) {
-                        document.getElementById('tmo').innerHTML = '<h6 class=\"text-success\">Promedio TMO: ' + min + ':' + seg + ' 100%</h6>';
+                        document.getElementById('tmo').innerHTML = '<h4 class=\"text-success\">Promedio TMO: ' + min + ':' + seg + ' 100%</h4>';
                         return '<p class=\"text-success\">Promedio TMO: ' + min + ':' + seg + '100%</p>';
                     } else if ((tmo / 1000) >= (570) && (tmo / 1000) <= (599)) {
                         document.getElementById('tmo').innerHTML = '<h6 class=\"text-warning\">Promedio TMO: ' + min + ':' + seg + " 90%</h6>";
