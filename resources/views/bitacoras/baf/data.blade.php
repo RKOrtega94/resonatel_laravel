@@ -70,6 +70,9 @@
 <script>
     $(document).ready(function() {
         $('#firebaseData').DataTable( {
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+            },
             serverSide: true,
             ajax: {
                 url: '/api/data/baf/{{auth()->user()->user}}',

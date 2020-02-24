@@ -23,11 +23,17 @@ class BitacoraRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'anillamador' => ['numeric', 'digits_between:8,10'],
-            'dni' => ['numeric', 'digits_between:10,13'],
-            'ticket' => ['numeric'],
-            'tmo' => ['regex:#[0-9]:[0-9]{2}#'],
-        ];
+        switch (auth()->user()->group) {
+            case 'BAF':
+                return [
+                    'anillamador' => ['numeric', 'digits_between:8,10'],
+                    'dni' => ['numeric', 'digits_between:10,13'],
+                    'ticket' => ['numeric'],
+                    'tmo' => ['regex:#[0-9]:[0-9]{2}#'],
+                ];
+                break;
+            default:
+                break;
+        }
     }
 }

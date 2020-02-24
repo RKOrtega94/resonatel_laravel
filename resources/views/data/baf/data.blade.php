@@ -73,6 +73,9 @@
 <script>
     $(document).ready(function() {
         var table = $('#firebaseData').DataTable( {
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+            },
             dom: 'Bfrtip',
             lengthChange: false,
             buttons : [ {

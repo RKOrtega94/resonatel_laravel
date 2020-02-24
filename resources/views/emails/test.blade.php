@@ -8,7 +8,7 @@
 <body>
     <h2>Bienvenido!!</h2>
     <p>{{ $user->firstName." ".$user->lastName }}, se ha creado tu cuenta para el registro de bitácora de Resona, para
-        iniciar sesión accede al este
+        iniciar sesión accede a este
         <a href="http://resonatel.herokuapp.com">link</a>,
         recuerda que tus credenciales de acceso son:</p>
     <p><strong>Usuario: </strong> {{ $user->email }}</p>

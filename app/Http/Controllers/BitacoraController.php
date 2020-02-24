@@ -21,13 +21,11 @@ class BitacoraController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth', 'profile']);
     }
 
     public function index(Request $request)
     {
-        //$menu = DB::table('menus')->get();
-        //return response()->json($menu);
         return view('bitacoras.data');
     }
 
@@ -57,14 +55,18 @@ class BitacoraController extends Controller
 
         // Setting data
         $ticket = $database
-            ->getReference("$group/ticket/$request->ticket")
-            ->set($request->merge([
+            ->getReference("$group/ticket")
+            ->push($request->merge([
                 'date' => now()->format('d/m/Y'),
                 'hour' => now()->format('H:i'),
                 'user' => auth()->user()->user
             ])->all());
 
-        $key = $ticket->getKey();
+        $key = $ticket->getChild('ticket')->getValue();
+
+        $ticket->update([
+            'id' => $ticket->getKey()
+        ]);
 
         return redirect()->route('bitacora.create')->withStatus(__("El ticket $key ha sido guardado correctamente."));
     }
@@ -88,7 +90,19 @@ class BitacoraController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Firebase instace
+        $database = BitacoraFirebase::firebaseConnection();
+
+        // User group
+        $group = strtolower(auth()->user()->group);
+
+        // Setting data
+        $data = $database
+            ->getReference("$group/ticket/$id");
+
+        $ticket = $data->getSnapshot();
+
+        return view('bitacoras.index', ['ticket' => $ticket->getValue()]);
     }
 
     /**
@@ -100,7 +114,23 @@ class BitacoraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Firebase instace
+        $database = BitacoraFirebase::firebaseConnection();
+
+        // User group
+        $group = strtolower(auth()->user()->group);
+
+        // Setting data
+        $data = $database
+            ->getReference("$group/ticket/$id");
+
+        $ticket = $data->getChild('ticket')->getValue();
+
+        $data->update(
+            $request->all()
+        );
+
+        return redirect()->route('bitacora.create')->withStatus(__("El ticket $ticket ha sido actualizado correctamente."));
     }
 
     /**
@@ -111,6 +141,20 @@ class BitacoraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Firebase instace
+        $database = BitacoraFirebase::firebaseConnection();
+
+        // User group
+        $group = strtolower(auth()->user()->group);
+
+        // Setting data
+        $data = $database
+            ->getReference("$group/ticket/$id");
+
+        $ticket = $data->getChild('ticket')->getValue();
+
+        $data->remove();
+
+        return redirect()->route('bitacora.create')->withStatus(__("El ticket $ticket ha sido eliminado correctamente."));
     }
 }
