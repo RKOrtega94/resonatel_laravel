@@ -19,7 +19,7 @@ $(document).ready(function () {
             { "data": "dni" },
             {
                 "data": function (data, type, set) {
-                    var comentario = data['coment'];
+                    var comentario = data['coment'] ? data['coment'] : '';
                     return comentario.substring(0, 100) + "...";
                 }
             },
