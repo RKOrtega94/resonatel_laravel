@@ -45,7 +45,11 @@
                             </div>
                             @switch(auth()->user()->group)
                             @case('BAF')
+                            @if ($ticket??'')
+                            @include('bitacoras.baf.edit')
+                            @else
                             @include('bitacoras.baf.form')
+                            @endif
                             @break
                             @case('CHAT')
                             @include('bitacoras.chat.form')

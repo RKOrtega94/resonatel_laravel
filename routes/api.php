@@ -58,8 +58,12 @@ Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
 
     try {
         $tickets = $database->getReference("baf/ticket")->orderByChild("user")->equalTo("$user->user");
-        $data = $tickets;
-        return DataTables::of($data->getValue())->toJson();
+        foreach ($tickets->getValue() as $key => $value) {
+            if (now()->format('d/m/Y') == $value['date']) {
+                array_push($data, $value);
+            }
+        }
+        return DataTables::of($data)->toJson();
     } catch (Exception $e) {
         return $e;
     }
@@ -67,13 +71,15 @@ Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
 
 Route::get('data/chat/daily/{user}', function (Request $request, User $user) {
     $data = [];
-
     $database = BitacoraFirebase::firebaseConnection();
-
     try {
         $tickets = $database->getReference("chat/ticket")->orderByChild("user")->equalTo("$user->user");
-        $data = $tickets;
-        return DataTables::of($data->getValue())->toJson();
+        foreach ($tickets->getValue() as $key => $value) {
+            if (now()->format('d/m/Y') == $value['date']) {
+                array_push($data, $value);
+            }
+        }
+        return DataTables::of($data)->toJson();
     } catch (Exception $e) {
         return $e;
     }

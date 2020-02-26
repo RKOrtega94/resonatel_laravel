@@ -131,18 +131,18 @@ $(document).ready(function () {
                 promedioTmo(total, totalRows)
             );
         },
-        createdRow: function (row, data, index) {
-            var today = new Date();
-            var day = "" + today.getDate();
-            day.length == 1 ? day = "0" + day : day = day;
-            var month = "" + (today.getMonth() + 1);
-            month.length == 1 ? month = "0" + month : month = month;
-            var year = today.getFullYear();
-            var currentDate = day + "/" + month + "/" + year
-            if (currentDate != data['date']) {
-                table.rows($(row)).remove().draw();
-            }
-        },
+        //createdRow: function (row, data, index) {
+        //    var today = new Date();
+        //    var day = "" + today.getDate();
+        //    day.length == 1 ? day = "0" + day : day = day;
+        //    var month = "" + (today.getMonth() + 1);
+        //    month.length == 1 ? month = "0" + month : month = month;
+        //    var year = today.getFullYear();
+        //    var currentDate = day + "/" + month + "/" + year
+        //    if (currentDate != data['date']) {
+        //        table.rows($(row)).remove().draw();
+        //    }
+        //},
     });
     table.buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
 });
