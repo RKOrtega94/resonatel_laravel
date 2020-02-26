@@ -76,7 +76,7 @@
             <div class="col-sm-10">
                 <div class="form-group{{ $errors->has('coment') ? ' has-danger' : '' }}">
                     <textarea class="form-control{{ $errors->has('coment') ? ' is-invalid' : '' }}" name="coment"
-                        id="input-coment" type="text" placeholder="{{ __('Comentario') }}" required="true"
+                        id="input-coment" type="text" placeholder="{{ __('Comentario') }}" 
                         aria-required="true">{{ old('coment') }}</textarea>
                     @if ($errors->has('coment'))
                     <span id="coment-error" class="error text-danger"
