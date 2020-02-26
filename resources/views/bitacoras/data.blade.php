@@ -9,8 +9,8 @@
 @case('BAF')
 @include('bitacoras.baf.data')
 @break
-@case(2)
-
+@case('CHAT')
+@include('bitacoras.chat.data')
 @break
 @default
 

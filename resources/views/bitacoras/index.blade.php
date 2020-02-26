@@ -47,8 +47,8 @@
                             @case('BAF')
                             @include('bitacoras.baf.form')
                             @break
-                            @case(2)
-
+                            @case('CHAT')
+                            @include('bitacoras.chat.form')
                             @break
                             @default
                             {{auth()->user()->group}}
@@ -79,8 +79,8 @@
         @case('BAF')
         @include('bitacoras.baf.daily')
         @break
-        @case(2)
-
+        @case('CHAT')
+        @include('bitacoras.chat.daily')
         @break
         @default
 

@@ -37,6 +37,20 @@ Route::get('data/baf/{user}', function (Request $request, User $user) {
     }
 });
 
+Route::get('data/chat/{user}', function (Request $request, User $user) {
+    $data = [];
+
+    $database = BitacoraFirebase::firebaseConnection();
+
+    try {
+        $tickets = $database->getReference("chat/ticket")->orderByChild("user")->equalTo("$user->user")->getSnapshot();
+        $data = $tickets;
+        return DataTables::of($data->getValue())->toJson();
+    } catch (Exception $e) {
+        return $e;
+    }
+});
+
 Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
     $data = [];
 
@@ -44,6 +58,20 @@ Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
 
     try {
         $tickets = $database->getReference("baf/ticket")->orderByChild("user")->equalTo("$user->user");
+        $data = $tickets;
+        return DataTables::of($data->getValue())->toJson();
+    } catch (Exception $e) {
+        return $e;
+    }
+});
+
+Route::get('data/chat/daily/{user}', function (Request $request, User $user) {
+    $data = [];
+
+    $database = BitacoraFirebase::firebaseConnection();
+
+    try {
+        $tickets = $database->getReference("chat/ticket")->orderByChild("user")->equalTo("$user->user");
         $data = $tickets;
         return DataTables::of($data->getValue())->toJson();
     } catch (Exception $e) {

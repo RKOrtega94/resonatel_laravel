@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use PhpParser\Node\Stmt\Break_;
 
 class BitacoraRequest extends FormRequest
 {
@@ -30,6 +31,15 @@ class BitacoraRequest extends FormRequest
                     'dni' => ['numeric', 'digits_between:10,13'],
                     'ticket' => ['numeric'],
                     'tmo' => ['regex:#[0-9]:[0-9]{2}#'],
+                ];
+                break;
+            case 'CHAT':
+                return [
+                    'ip' => ['regex:#^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$#'],
+                    'dni' => ['numeric', 'digits_between:10,13'],
+                    'ticket' => ['numeric'],
+                    'tmo' => ['regex:#[0-9]:[0-9]{2}#'],
+                    'req' => ['required']
                 ];
                 break;
             default:

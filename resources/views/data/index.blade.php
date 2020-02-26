@@ -10,8 +10,8 @@
 @case('BAF')
 @include('data.baf.data')
 @break
-@case(2)
-
+@case('CHAT')
+@include('data.chat.data')
 @break
 @default
 
