@@ -10,8 +10,7 @@
             <div class="col-sm-9">
                 <div class="form-group{{ $errors->has('ip') ? ' has-danger' : '' }}">
                     <input class="form-control{{ $errors->has('ip') ? ' is-invalid' : '' }}" name="ip" id="input-ip"
-                        type="text" placeholder="{{ __('IP') }}"
-                        value="{{ old('ip') }}" required="true"
+                        type="text" placeholder="{{ __('IP') }}" value="{{ $ticket['ip'] }}" required="true"
                         aria-required="true" />
                     @if ($errors->has('ip'))
                     <span id="ip-error" class="error text-danger" for="input-ip">{{ $errors->first('ip') }}</span>
@@ -26,8 +25,7 @@
             <div class="col-sm-9">
                 <div class="form-group{{ $errors->has('dni') ? ' has-danger' : '' }}">
                     <input class="form-control{{ $errors->has('dni') ? ' is-invalid' : '' }}" name="dni" id="input-dni"
-                        type="text" placeholder="{{ __('Cédula ó RUC') }}"
-                        value="{{ old('dni') }}" required="true"
+                        type="text" placeholder="{{ __('Cédula ó RUC') }}" value="{{ $ticket['dni'] }}" required="true"
                         aria-required="true" />
                     @if ($errors->has('dni'))
                     <span id="dni-error" class="error text-danger" for="input-dni">{{ $errors->first('dni') }}</span>
@@ -44,9 +42,8 @@
             <div class="col-sm-9">
                 <div class="form-group{{ $errors->has('ticket') ? ' has-danger' : '' }}">
                     <input class="form-control{{ $errors->has('ticket') ? ' is-invalid' : '' }}" name="ticket"
-                        id="input-ticket" type="text" placeholder="{{ __('Ticket') }}"
-                        value="{{ old('ticket') }}" required="true"
-                        aria-required="true" />
+                        id="input-ticket" type="text" placeholder="{{ __('Ticket') }}" value="{{ $ticket['ticket'] }}"
+                        required="true" aria-required="true" />
                     @if ($errors->has('ticket'))
                     <span id="ticket-error" class="error text-danger"
                         for="input-ticket">{{ $errors->first('ticket') }}</span>
@@ -61,9 +58,8 @@
             <div class="col-sm-9">
                 <div class="form-group{{ $errors->has('tmo') ? ' has-danger' : '' }}">
                     <input class="form-control{{ $errors->has('tmo') ? ' is-invalid' : '' }}" name="tmo" id="input-tmo"
-                        type="text" placeholder="{{ __('Duración (00:00)') }}"
-                        value="{{ old('tmo') }}" required="true"
-                        aria-required="true" />
+                        type="text" placeholder="{{ __('Duración (00:00)') }}" value="{{ $ticket['tmo'] }}"
+                        required="true" aria-required="true" />
                     @if ($errors->has('tmo'))
                     <span id="tmo-error" class="error text-danger" for="input-tmo">{{ $errors->first('tmo') }}</span>
                     @endif
@@ -80,7 +76,7 @@
                 <div class="form-group{{ $errors->has('coment') ? ' has-danger' : '' }}">
                     <textarea class="form-control{{ $errors->has('coment') ? ' is-invalid' : '' }}" name="coment"
                         id="input-coment" type="text" placeholder="{{ __('Comentario') }}" required="true"
-                        aria-required="true">{{ old('coment') }}</textarea>
+                        aria-required="true">{{ $ticket['coment'] }}</textarea>
                     @if ($errors->has('coment'))
                     <span id="coment-error" class="error text-danger"
                         for="input-coment">{{ $errors->first('coment') }}</span>
@@ -95,17 +91,13 @@
             <select name="req" id="input-req" class="selectpicker{{ $errors->has('req') ? ' is-invalid' : '' }}"
                 required="true">
                 <option value="">N/A</option>
-                <option value="DTH"
-                    {{ old('req')=='DTH'?'selected':'' }}>DTH
+                <option value="DTH" {{ $ticket['req']=='DTH'?'selected':'' }}>DTH
                 </option>
-                <option value="IF"
-                    {{ old('req')=='IF'?'selected':'' }}>INTERNET
+                <option value="IF" {{ $ticket['req']=='IF'?'selected':'' }}>INTERNET
                     FIJO</option>
-                <option value="SMA"
-                    {{ old('req')=='SMA'?'selected':'' }}>SERVICO
+                <option value="SMA" {{ $ticket['req']=='SMA'?'selected':'' }}>SERVICO
                     MÓVIL AVANZADO</option>
-                <option value="TF"
-                    {{ old('req')=='TF'?'selected':'' }}>TELEFONÍA
+                <option value="TF" {{ $ticket['req']=='TF'?'selected':'' }}>TELEFONÍA
                     FIJA</option>
             </select>
             @if ($errors->has('req'))
@@ -121,8 +113,7 @@
             <div class="form-check" style="margin: 15px">
                 <label class="form-check-label">
                     <input id="abierto" class="form-check-input" type="checkbox" name="status"
-                        {{ old('status')?'checked':'' }}
-                        onclick="checkFluency()">
+                        {{ old('status')?'checked':'' }} onclick="checkFluency()">
                     {{ __('Ticket abierto?') }}
                     <span class="form-check-sign">
                         <span class="check"></span>

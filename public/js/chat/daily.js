@@ -3,7 +3,7 @@ $(document).ready(function () {
         language: {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
-        serverSide: true,
+        serverSide: false,
         ajax: {
             url: dataUrl,
             type: 'GET',
@@ -130,18 +130,6 @@ $(document).ready(function () {
             $(api.column(4).footer()).html(
                 promedioTmo(total, totalRows)
             );
-        },
-        createdRow: function (row, data, index) {
-            var today = new Date();
-            var day = "" + today.getDate();
-            day.length == 1 ? day = "0" + day : day = day;
-            var month = "" + (today.getMonth() + 1);
-            month.length == 1 ? month = "0" + month : month = month;
-            var year = today.getFullYear();
-            var currentDate = day + "/" + month + "/" + year
-            if (currentDate != data['date']) {
-                table.rows($(row)).remove().draw();
-            }
         },
     });
     table.buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');

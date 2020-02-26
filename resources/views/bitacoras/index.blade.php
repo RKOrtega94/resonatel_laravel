@@ -52,7 +52,11 @@
                             @endif
                             @break
                             @case('CHAT')
+                            @if ($ticket??'')
+                            @include('bitacoras.chat.edit')
+                            @else
                             @include('bitacoras.chat.form')
+                            @endif
                             @break
                             @default
                             {{auth()->user()->group}}
