@@ -195,13 +195,13 @@
                     cancelLabel: "Cancelar",
                     toLabel: "al",
                     daysOfWeek: [
+                        "Dom",
                         "Lun",
                         "Mar",
                         "Mie",
                         "Jue",
                         "Vie",
                         "Sab",
-                        "Dom"
                     ],
                     monthNames: [
                         "Enero",
@@ -216,7 +216,8 @@
                         "Octubre",
                         "Noviembre",
                         "Diciembre"
-                    ]
+                    ],
+                    "firstDay": 1
                 }
             }, function (start, end, label) {
                 url = '/data/{{auth()->user()->group}}';
