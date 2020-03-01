@@ -196,7 +196,7 @@
         $(function () {
             $('#dates').daterangepicker({
                 opens: 'left',
-                "maxDate": today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear(),
+                "maxDate": today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
                 locale: {
                     format: 'DD-MM-YYYY',
                     separator: " al ",

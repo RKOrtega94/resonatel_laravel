@@ -89,6 +89,7 @@
 <script>
     $(document).ready(function () {
         var url = '/data/{{auth()->user()->group}}';
+        var today = new Date();
         function loadDataTable(url) {
             var table = $('#firebaseData').DataTable({
                 language: {
@@ -187,7 +188,8 @@
 
         $(function () {
             $('#dates').daterangepicker({
-                opens: 'left',
+                opens: 'right',
+                "maxDate": today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
                 locale: {
                     format: 'DD-MM-YYYY',
                     separator: " al ",
