@@ -98,6 +98,9 @@ Route::middleware(['auth'])->group(function () {
     // Get all data from group
     Route::get('data/{campana}', 'DataBitacoraController@getAll');
 
+    // Get all data from group by date
+    Route::get('data/{campana}/{start}/{end}', 'DataBitacoraController@getAllByDate');
+
     Route::get('menu/sortable/{id}/{sorting}', 'SortableController@sortable');
 
     // Delete Menu
