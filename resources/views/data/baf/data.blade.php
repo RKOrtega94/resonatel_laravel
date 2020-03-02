@@ -195,6 +195,7 @@
                     separator: " al ",
                     applyLabel: "Aplicar",
                     cancelLabel: "Cancelar",
+                    fromLabel: "De",
                     toLabel: "al",
                     daysOfWeek: [
                         "Dom",
