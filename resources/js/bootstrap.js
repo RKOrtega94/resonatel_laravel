@@ -28,5 +28,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 
-//Firebase
+// Firebase
 window.firebase = require('firebase');

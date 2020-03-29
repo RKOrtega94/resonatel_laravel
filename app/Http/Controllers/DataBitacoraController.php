@@ -18,7 +18,7 @@ class DataBitacoraController extends Controller
         $camp = strtolower($campania);
 
         try {
-            $tickets = $database->getReference("$camp/ticket")->orderByChild("date")->getSnapshot();
+            $tickets = $database->getReference("$camp/ticket")->orderByChild("ticket")->limitToFirst(5000)->getSnapshot();
             $data = $tickets;
             return DataTables::of($data->getValue())->toJson();
         } catch (Exception $e) {

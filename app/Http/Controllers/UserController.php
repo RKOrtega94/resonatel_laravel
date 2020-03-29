@@ -71,7 +71,7 @@ class UserController extends Controller
         ]);
 
         Mail::to($user->email)->send(new WellcomeMail($user));
-        return redirect()->route('user.index')->withStatus(__("User successfully created."));;
+        return redirect()->route('user.index')->withStatus(__("User successfully created."));
     }
 
     /**

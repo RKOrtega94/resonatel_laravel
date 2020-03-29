@@ -54,7 +54,7 @@ Management')])
                                         {{ __('Email') }}
                                     </th>
                                     <th>
-                                        {{ $date }}
+                                        {{ __('Fecha') }}
                                     </th>
                                     <th class="text-right">
                                         {{ __('Actions') }}

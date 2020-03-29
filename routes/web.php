@@ -107,4 +107,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('menu/remove/{id}', 'MenuController@delete')->name('menu.remove');
 
     Route::resource('elearning/admin', 'AdminElearningController');
+
+    Route::resource('vt', 'VisitasTecnicasController');
 });
