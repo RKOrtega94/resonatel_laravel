@@ -143,10 +143,10 @@ $(document).ready(function () {
                 "firstDay": 1
             }
         }, function (start, end, label) {
-            url = '/data/{{auth()->user()->group}}';
-            url = url + '/' + start.format('DD-MM-YYYY') + '/' + end.format('DD-MM-YYYY');
+            var newurl = url;
+            newurl = newurl + '/' + start.format('DD-MM-YYYY') + '/' + end.format('DD-MM-YYYY');
             $('#firebaseData').DataTable().destroy();
-            loadDataTable(url);
+            loadDataTable(newurl);
         });
     });
     $('#firebaseData').DataTable.Buttons()
