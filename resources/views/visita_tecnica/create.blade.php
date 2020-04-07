@@ -20,8 +20,8 @@
                                 </div>
                             </div>-->
                             <div class="row">
-                                <label class="col-sm-2 col-form-label" for="codigo">{{ __('Código') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col">
+                                    <label class="col-form-label" for="codigo">{{ __('Código VT') }}</label>
                                     <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}"
                                             name="codigo" id="input-codigo" type="text" placeholder="{{ __('Código') }}"
@@ -32,10 +32,8 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Servicio') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col">
+                                    <label class="col-form-label">{{ __('Número de servicio') }}</label>
                                     <div class="form-group{{ $errors->has('servicio') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('servicio') ? ' is-invalid' : '' }}"
                                             name="servicio" id="input-servicio" type="text"
@@ -47,21 +45,63 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Nombre') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('firstName') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}"
-                                            name="firstName" id="input-firstName" type="text"
-                                            placeholder="{{ __('Nombre') }}" value="{{ old('firstName') }}"
+                                <div class="col">
+                                    <label class="col-form-label">{{ __('Fecha de reporte') }}</label>
+                                    <div class="form-group{{ $errors->has('date') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}"
+                                            name="date" id="input-date" type="text"
+                                            placeholder="{{ __('Fecha de reporte') }}" value="{{ old('date') }}"
                                             required="true" aria-required="true" />
-                                        @if ($errors->has('firstName'))
-                                        <span id="firstName-error" class="error text-danger"
-                                            for="input-firstName">{{ $errors->first('firstName') }}</span>
+                                        @if ($errors->has('date'))
+                                        <span id="date-error" class="error text-danger"
+                                            for="input-date">{{ $errors->first('date') }}</span>
                                         @endif
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="col-form-label">{{ __('Nombre del cliente') }}</label>
+                                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                            name="name" id="input-name" type="text"
+                                            placeholder="{{ __('Nombre del cliente') }}" value="{{ old('name') }}"
+                                            required="true" aria-required="true" />
+                                        @if ($errors->has('name'))
+                                        <span id="name-error" class="error text-danger"
+                                            for="input-name">{{ $errors->first('name') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label class="col-form-label">{{ __('Cédula del cliente') }}</label>
+                                    <div class="form-group{{ $errors->has('dni') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('dni') ? ' is-invalid' : '' }}"
+                                            name="dni" id="input-dni" type="text"
+                                            placeholder="{{ __('Cédula del cliente') }}" value="{{ old('dni') }}"
+                                            required="true" aria-required="true" />
+                                        @if ($errors->has('dni'))
+                                        <span id="dni-error" class="error text-danger"
+                                            for="input-dni">{{ $errors->first('dni') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label class="col-form-label">{{ __('Contacto') }}</label>
+                                    <div class="form-group{{ $errors->has('contact') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}"
+                                            name="contact" id="input-contact" type="text"
+                                            placeholder="{{ __('Contacto') }}" value="{{ old('contact') }}"
+                                            required="true" aria-required="true" />
+                                        @if ($errors->has('contact'))
+                                        <span id="contact-error" class="error text-danger"
+                                            for="input-contact">{{ $errors->first('contact') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!--Zona para hacer drag and drop de imagen-->
                             </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">

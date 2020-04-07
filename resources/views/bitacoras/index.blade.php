@@ -58,6 +58,13 @@
                             @include('bitacoras.chat.form')
                             @endif
                             @break
+                            @case('SACMOVIL')
+                            @if ($ticket??'')
+                            @include('bitacoras.sac_movil.edit')
+                            @else
+                            @include('bitacoras.sac_movil.form')
+                            @endif
+                            @break
                             @default
                             {{auth()->user()->group}}
                             @endswitch
@@ -89,6 +96,9 @@
         @break
         @case('CHAT')
         @include('bitacoras.chat.daily')
+        @break
+        @case('SACMOVIL')
+        @include('bitacoras.sac_movil.daily')
         @break
         @default
 

@@ -51,6 +51,20 @@ Route::get('data/chat/{user}', function (Request $request, User $user) {
     }
 });
 
+Route::get('data/sacmovil/{user}', function (Request $request, User $user) {
+    $data = [];
+
+    $database = BitacoraFirebase::firebaseConnection();
+
+    try {
+        $tickets = $database->getReference("sacmovil/ticket")->orderByChild("user")->equalTo("$user->user")->getSnapshot();
+        $data = $tickets;
+        return DataTables::of($data->getValue())->toJson();
+    } catch (Exception $e) {
+        return $e;
+    }
+});
+
 Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
     $data = [];
 
@@ -58,6 +72,24 @@ Route::get('data/baf/daily/{user}', function (Request $request, User $user) {
 
     try {
         $tickets = $database->getReference("baf/ticket")->orderByChild("user")->equalTo("$user->user");
+        foreach ($tickets->getValue() as $key => $value) {
+            if (now()->format('d/m/Y') == $value['date']) {
+                array_push($data, $value);
+            }
+        }
+        return DataTables::of($data)->toJson();
+    } catch (Exception $e) {
+        return $e;
+    }
+});
+
+Route::get('data/sacmovil/daily/{user}', function (Request $request, User $user) {
+    $data = [];
+
+    $database = BitacoraFirebase::firebaseConnection();
+
+    try {
+        $tickets = $database->getReference("sacmovil/ticket")->orderByChild("user")->equalTo("$user->user");
         foreach ($tickets->getValue() as $key => $value) {
             if (now()->format('d/m/Y') == $value['date']) {
                 array_push($data, $value);

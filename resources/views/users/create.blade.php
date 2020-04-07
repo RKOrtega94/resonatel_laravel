@@ -49,6 +49,7 @@
                                             <option value="CHAT">CHAT</option>
                                             <option value="PW">PÁGINA WEB</option>
                                             <option value="CE">CAMPAÑAS ESPECÍFICAS</option>
+                                            <option value="SACMOVIL">SAC MOVIL</option>
                                         </select>
                                         @if ($errors->has('group'))
                                         <span id="group-error" class="error text-danger"

@@ -108,5 +108,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('elearning/admin', 'AdminElearningController');
 
+    // VT router controller
     Route::resource('vt', 'VisitasTecnicasController');
+
+    // News route Controller
+    Route::resource('news', 'NewsController');
 });

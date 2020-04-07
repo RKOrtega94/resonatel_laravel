@@ -14,6 +14,9 @@
 @case('CHAT')
 @include('data.chat.data')
 @break
+@case('SACMOVIL')
+@include('data.sac_movil.data')
+@break
 @default
 
 @endswitch

@@ -12,6 +12,9 @@
 @case('CHAT')
 @include('bitacoras.chat.data')
 @break
+@case('SACMOVIL')
+@include('bitacoras.sac_movil.data')
+@break
 @default
 
 @endswitch
