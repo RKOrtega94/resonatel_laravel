@@ -50,7 +50,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <video class="video-fluid z-depth-1" autoplay="true" loop controls>
+                    <video class="video-fluid z-depth-1" autoplay="true" loop controls poster="./images/CNT_Logo.svg.png">
                         <source src="./video/cnt_quedate_en_casa.mp4#0.2" type="video/mp4" />
                     </video>
                 </div>
