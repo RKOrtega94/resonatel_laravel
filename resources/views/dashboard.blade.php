@@ -65,5 +65,6 @@
 <script>
     const video = document.querySelector('video')
     video.volume = 0.2
+    video.play()
 </script>
 @endsection
