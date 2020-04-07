@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <video class="video-fluid z-depth-1" autoplay="true" loop controls>
-                        <source src="./video/cnt_quedate_en_casa.mp4" type="video/mp4" />
+                        <source src="./video/cnt_quedate_en_casa.mp4#0.2" type="video/mp4" />
                     </video>
                 </div>
             </div>
