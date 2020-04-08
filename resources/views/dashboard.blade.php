@@ -50,9 +50,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <video class="video-fluid z-depth-1" autoplay="true" loop controls poster="./images/CNT_Logo.svg.png">
-                        <source src="./video/cnt_quedate_en_casa.mp4" type="video/mp4" />
-                    </video>
                 </div>
             </div>
         </div>
@@ -62,9 +59,4 @@
 
 @section('custom-scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-<script>
-    const video = document.querySelector('video')
-    video.volume = 0.2
-    video.play()
-</script>
 @endsection

@@ -63,6 +63,9 @@
                                             <option value="CE" {{ "CE" == $user->group?'selected':'' }}>
                                                 Campañas Específicas
                                             </option>
+                                            <option value="SACMOVIL" {{ "SACMOVIL" == $user->group?'selected':'' }}>
+                                                SAC MOVIL
+                                            </option>
                                         </select>
                                         @if ($errors->has('group'))
                                         <span id="group-error" class="error text-danger"
