@@ -6,16 +6,15 @@
             @include('helpers.passwordalert')
         </div>
         <div class="container-fluid justify-content-end">
-            <p class="font-weight-bold text-dark align-content-end">
-                Hola,
-                @php
-                $userLogin = App\User::userLogin(Auth::user()->id);
-                $pos = strrpos($userLogin->firstName, ' ');
-                echo substr($userLogin->firstName, 0, $pos);
-                @endphp
-                <br>
-                El sol no es suficiente para iluminar todo el planeta, <em>¡También te necesita a ti!</em>
-            </p>
+            @php
+            $userLogin = App\User::userLogin(Auth::user()->id);
+            $pos = strrpos($userLogin->firstName, ' ');
+            if($userLogin->profile === 'Asesor'){
+            echo "<p class='font-weight-bold text-dark align-content-end'>Hola, ".substr($userLogin->firstName, 0,
+                $pos)."<br> El sol no es suficiente para iluminar todo el planeta, <em>¡También te necesita a ti!</em>
+            </p>";
+            }
+            @endphp
         </div>
     </div>
 </div>
