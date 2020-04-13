@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="green" data-background-color="white" data-image="{{ asset('images/bg1.jpg') }}">
+<div class="sidebar" data-color="green" data-background-color="purple" data-image="{{ asset('images/bg1.jpg') }}">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -33,7 +33,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="{{$item['brand']}}">
+                <div class="collapse show" id="{{$item['brand']}}">
                     <ul class="nav">
                         @foreach ($item['submenu'] as $submenu)
                         @if ($submenu['user_id'] == Auth::user()->id)

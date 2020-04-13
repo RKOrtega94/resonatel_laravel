@@ -65,6 +65,13 @@
                             @include('bitacoras.sac_movil.form')
                             @endif
                             @break
+                            @case('PW')
+                            @if ($ticket??'')
+                            @include('bitacoras.pw.edit')
+                            @else
+                            @include('bitacoras.pw.form')
+                            @endif
+                            @break
                             @default
                             {{auth()->user()->group}}
                             @endswitch

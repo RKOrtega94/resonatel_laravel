@@ -67,6 +67,19 @@ class User extends Authenticatable
     }
 
     /**
+     * List of all enabled users
+     */
+    public static function userLogin($user_id)
+    {
+        return DB::table('users')
+            ->where('users.id', $user_id)
+            ->join('users_profiles', 'users.id', 'users_profiles.user_id')
+            ->join('profiles', 'profiles.id', 'users_profiles.profile_id')
+            ->select('profiles.name as profile', 'users.*')
+            ->first();
+    }
+
+    /**
      * List of all archived users
      */
     public static function archivedUsers()
