@@ -1,57 +1,21 @@
 @extends('layouts.app', ['activePage' => 'home', 'titlePage' => __(' - Home')])
 @section('content')
-<style>
-    .mcarousel {
-        width: 100%;
-        overflow: auto;
-        position: relative;
-        padding: 30px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .mcarousel__container {
-        white-space: nowrap;
-        margin: 80px 0px;
-        padding-bottom: 10px;
-    }
-
-    .mcarousel-item {
-        width: 300px;
-        height: 300px;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-right: 10px;
-        display: inline-block;
-        cursor: pointer;
-        transition: 450ms;
-        transform-origin: center left;
-    }
-
-    .mcarousel-item:hover~.mcarousel-item {
-        transform: translate3d(100px, 0, 0)
-    }
-
-    .mcarousel__container:hover .mcarousel-item {
-        opacity: 0.3;
-    }
-
-    .mcarousel__container:hover .mcarousel-item:hover {
-        transform: scale(1.5);
-        opacity: 1;
-    }
-</style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             @include('helpers.passwordalert')
-
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                </div>
-            </div>
+        <div class="container-fluid justify-content-end">
+            <p class="font-weight-bold text-dark align-content-end">
+                Hola,
+                @php
+                $userLogin = App\User::userLogin(Auth::user()->id);
+                $pos = strrpos($userLogin->firstName, ' ');
+                echo substr($userLogin->firstName, 0, $pos);
+                @endphp
+                <br>
+                El sol no es suficiente para iluminar todo el planeta, <em>¡También te necesita a ti!</em>
+            </p>
         </div>
     </div>
 </div>
