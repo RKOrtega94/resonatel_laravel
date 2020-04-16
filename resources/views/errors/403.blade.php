@@ -17,7 +17,6 @@
 
             </div>
         </div>
-        <!-- /.col-lg-8 col-offset-2 -->
     </div>
 </div>
 @endsection
