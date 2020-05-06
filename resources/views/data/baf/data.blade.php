@@ -49,19 +49,6 @@
                                     <th style="width: 500px">PIR / Comment</th>
                                     <th style="width: 50px">Duración</th>
                                 </thead>
-                                <tfoot class="text-primary">
-                                    <th>Fecha</th>
-                                    <th>Hora</th>
-                                    <th>Usuario</th>
-                                    <th>Ticket</th>
-                                    <th>Anillamador</th>
-                                    <th>Cédula</th>
-                                    <th>Tipo</th>
-                                    <th>Abierto</th>
-                                    <th>Escalado (N2 / VT)</th>
-                                    <th>PIR / Comment</th>
-                                    <th>Duración</th>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
