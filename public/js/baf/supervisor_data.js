@@ -167,7 +167,7 @@ $(document).ready(function () {
                             return "No tmo"
                         }
                     }
-                }
+                },
             ]
         });
         function reloadTable() {
