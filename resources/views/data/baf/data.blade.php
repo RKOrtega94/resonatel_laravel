@@ -43,6 +43,7 @@
                                     <th style="width: 50px">Ticket</th>
                                     <th style="width: 50px">Anillamador</th>
                                     <th style="width: 50px">Cédula</th>
+                                    <th style="width: 50px">Tipo</th>
                                     <th style="width: 50px">Abierto</th>
                                     <th style="width: 50px">Escalado (N2 / VT)</th>
                                     <th style="width: 500px">PIR / Comment</th>
@@ -55,6 +56,7 @@
                                     <th>Ticket</th>
                                     <th>Anillamador</th>
                                     <th>Cédula</th>
+                                    <th>Tipo</th>
                                     <th>Abierto</th>
                                     <th>Escalado (N2 / VT)</th>
                                     <th>PIR / Comment</th>
@@ -87,7 +89,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
-    var url = '/data/{{auth()->user()->group}}';
+    const url = '{{url("/data")}}/{{auth()->user()->group}}';
 </script>
 <script src="{{ asset('js/baf/supervisor_data.js') }}"></script>
 <script>

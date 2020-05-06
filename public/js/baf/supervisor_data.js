@@ -7,9 +7,8 @@ $(document).ready(function () {
      * @param  url
      * Load datatable function
      */
-    function loadDataTable(url) {
-        // Define Table
-        var table = $('#firebaseData').DataTable({
+    function loadDataTable(ruta) {
+        let table = $('#firebaseData').DataTable({
             language: {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
             },
@@ -26,12 +25,25 @@ $(document).ready(function () {
             }],
             serverSide: false,
             ajax: {
-                url: url,
-                type: 'GET',
+                url: ruta,
+                type: 'GET', error: function (xhr, textStatus, errorThrown) {
+                    reloadTable()
+                },
                 dataSrc: 'data',
             },
             columns: [
-                { "data": "date" },
+                {
+                    "data": function (data, type, set) {
+                        try {
+                            if (data['date']) {
+                                return data['date']
+                            }
+                            return "0/0/0";
+                        } catch (err) {
+                            return "0/0/0";
+                        }
+                    }
+                },
                 {
                     "data": function (data, type, set) {
                         try {
@@ -56,9 +68,54 @@ $(document).ready(function () {
                         }
                     }
                 },
-                { "data": "ticket" },
-                { "data": "anillamador" },
-                { "data": "dni" },
+                {
+                    "data": function (data, type, set) {
+                        try {
+                            if (data["ticket"]) {
+                                return data["ticket"]
+                            }
+                            return "No ticket"
+                        } catch (error) {
+                            return "No ticket"
+                        }
+                    }
+                },
+                {
+                    "data": function (data, type, set) {
+                        try {
+                            if (data["anillamador"]) {
+                                return data["anillamador"]
+                            }
+                            return "No anillamador"
+                        } catch (error) {
+                            return "No anillamador"
+                        }
+                    }
+                },
+                {
+                    "data": function (data, type, set) {
+                        try {
+                            if (data["dni"]) {
+                                return data["dni"]
+                            }
+                            return "No dni"
+                        } catch (error) {
+                            return "No dni"
+                        }
+                    }
+                },
+                {
+                    "data": function (data, type, set) {
+                        try {
+                            if (data["tipo"]) {
+                                return data["tipo"]
+                            }
+                            return "No tipo"
+                        } catch (error) {
+                            return "No tipo"
+                        }
+                    }
+                },
                 {
                     "data": function (data, type, set) {
                         try {
@@ -99,12 +156,26 @@ $(document).ready(function () {
                         }
                     }
                 },
-                { "data": "tmo" }
+                {
+                    "data": function (data, type, set) {
+                        try {
+                            if (data["tmo"]) {
+                                return data["tmo"]
+                            }
+                            return "No tmo"
+                        } catch (error) {
+                            return "No tmo"
+                        }
+                    }
+                }
             ]
         });
+        function reloadTable() {
+            table.ajax.reload()
+        }
     };
 
-    loadDataTable(url);
+    loadDataTable(url)
 
     $(function () {
         $('#dates').daterangepicker({
@@ -143,8 +214,8 @@ $(document).ready(function () {
                 "firstDay": 1
             }
         }, function (start, end, label) {
-            var newurl = url;
-            newurl = newurl + '/' + start.format('DD-MM-YYYY') + '/' + end.format('DD-MM-YYYY');
+            var newurl = `${url}/${start.format('DD-MM-YYYY')}/${end.format('DD-MM-YYYY')}`;
+            console.log(newurl)
             $('#firebaseData').DataTable().destroy();
             loadDataTable(newurl);
         });

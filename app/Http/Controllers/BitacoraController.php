@@ -24,7 +24,7 @@ class BitacoraController extends Controller
         $this->middleware(['auth', 'profile']);
     }
 
-    public function index(Request $request)
+    public function index()
     {
         return view('bitacoras.data');
     }

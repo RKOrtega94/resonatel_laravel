@@ -27,10 +27,12 @@ class BitacoraRequest extends FormRequest
         switch (auth()->user()->group) {
             case 'BAF':
                 return [
-                    'anillamador' => ['numeric', 'digits_between:8,10'],
-                    'dni' => ['numeric', 'digits_between:10,13'],
-                    'ticket' => ['numeric'],
-                    'tmo' => ['regex:#[0-9]:[0-9]{2}#'],
+                    'anillamador' => ['numeric', 'digits_between:8,10', 'required'],
+                    'dni' => 'numeric|digits_between:10,13|required',
+                    'ticket' => 'numeric|required',
+                    'tmo' => 'regex:#[0-9]:[0-9]{2}#|required',
+                    'coment' => 'min:10|required',
+                    'tipo' => 'required',
                 ];
                 break;
             case 'CHAT':
