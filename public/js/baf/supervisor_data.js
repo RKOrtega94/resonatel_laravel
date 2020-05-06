@@ -222,3 +222,4 @@ $(document).ready(function () {
     });
     $('#firebaseData').DataTable.Buttons()
 });
+
